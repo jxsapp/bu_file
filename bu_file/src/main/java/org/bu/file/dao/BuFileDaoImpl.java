@@ -16,17 +16,19 @@ import org.springframework.stereotype.Repository;
 @Repository("buFileDao")
 public class BuFileDaoImpl implements BuFileDao {
 
+	private static final String PREFIX_KEY = "BuFile.";
+
 	@Autowired
 	private RedisTemplate<Serializable, Serializable> redisTemplate;
 
 	@Override
-	public void put(final BuFile BuFile, final long seconds) {
+	public void put(final BuFile buFile, final long seconds) {
 
 		redisTemplate.execute(new RedisCallback<Object>() {
 			@Override
 			public Object doInRedis(RedisConnection connection) throws DataAccessException {
-				byte[] keys = redisTemplate.getStringSerializer().serialize("BuFile.fileName." + BuFile.getFileName());
-				connection.set(keys, BuFile.getFileData());
+				byte[] keys = redisTemplate.getStringSerializer().serialize(PREFIX_KEY + buFile.getFileKey());
+				connection.set(keys, buFile.getFileData());
 				if (seconds > 0) {
 					connection.expire(keys, seconds);
 				}
@@ -36,16 +38,15 @@ public class BuFileDaoImpl implements BuFileDao {
 	}
 
 	@Override
-	public BuFile get(final String fileName) {
+	public BuFile get(final String type, final String path) {
 		return redisTemplate.execute(new RedisCallback<BuFile>() {
 			@Override
 			public BuFile doInRedis(RedisConnection connection) throws DataAccessException {
-				byte[] key = redisTemplate.getStringSerializer().serialize("BuFile.fileName." + fileName);
+				byte[] key = redisTemplate.getStringSerializer().serialize(PREFIX_KEY + BuFile.getKey(type, path));
 				if (connection.exists(key)) {
 					byte[] value = connection.get(key);
-					BuFile BuFile = new BuFile();
+					BuFile BuFile = new BuFile(type, path);
 					BuFile.setFileData(value);
-					BuFile.setFileName(fileName);
 					return BuFile;
 				}
 				return null;
@@ -57,7 +58,7 @@ public class BuFileDaoImpl implements BuFileDao {
 	public long delete(final String fileName) {
 		return redisTemplate.execute(new RedisCallback<Long>() {
 			public Long doInRedis(RedisConnection connection) {
-				return connection.del(redisTemplate.getStringSerializer().serialize("BuFile.fileName." + fileName));
+				return connection.del(redisTemplate.getStringSerializer().serialize(PREFIX_KEY + fileName));
 			}
 		});
 	}

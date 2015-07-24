@@ -20,7 +20,7 @@ public interface BuFileDao {
 	 * @param fileName
 	 * @return
 	 */
-	public BuFile get(String fileName);
+	public BuFile get(String type, String path);
 
 	/**
 	 * 删除文件

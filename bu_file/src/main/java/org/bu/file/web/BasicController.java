@@ -1,12 +1,15 @@
 package org.bu.file.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bu.file.misc.Error;
 import org.bu.file.misc.PropertiesHolder;
 import org.codehaus.jettison.json.JSONException;
@@ -20,24 +23,27 @@ public abstract class BasicController implements ServletContextAware {
 
 	protected ServletContext servletContext;// Servlet 上下文
 	protected String basePath;// 基本路径
-
-	/**
-	 * 放置当前文件到跟目录，或者到子目录
-	 */
-	static boolean PUT_FILE_TO_SUB_DIR = PropertiesHolder.getBoolean("put.file.save.to.sub");
-	/**
-	 * 放置在子文件夹下的目录数
-	 */
-	static int PUT_FILE_TO_SUB_DIR_SIZE = PropertiesHolder.getIntValue("put.file.save.to.sub.size");
-	/**
-	 * 将长传的文件保存到磁盘上
-	 */
-	static boolean PUT_SAVE_TO_DISC = PropertiesHolder.getBoolean("put.file.save.to.disc");
 	/**
 	 * 文件在数据库中找不见，从磁盘中获取文件
 	 */
-	static boolean GET_FILE_RIDIS_NOT_FOUNT_GET_FROM_DISC = PropertiesHolder
-			.getBoolean("get.file.redis.notfound.get.from.disc");
+	static boolean READ_FOR_DISC = PropertiesHolder.getBoolean("get.file.redis.notfound.get.from.disc");
+
+	// 过期时间
+	static final long EXPIRE = PropertiesHolder.getLongValue("put.file.expire.seconds");
+	static String ROOT_PATH = PropertiesHolder.getValue("root.file.path");
+
+	private static List<String> FILE_TYPES = new ArrayList<String>();
+	private static List<String> AUTHS = new ArrayList<String>();
+	static {
+		AUTHS.add(PropertiesHolder.getValue("key_zhanqun"));
+		AUTHS.add(PropertiesHolder.getValue("key_qlsx"));
+		AUTHS.add(PropertiesHolder.getValue("key_banjian"));
+
+		FILE_TYPES.add(PropertiesHolder.getValue("type_tysb"));
+		FILE_TYPES.add(PropertiesHolder.getValue("type_qlsx"));
+		FILE_TYPES.add(PropertiesHolder.getValue("type_bjsb"));
+
+	}
 
 	/**
 	 * 导航栏
@@ -45,8 +51,7 @@ public abstract class BasicController implements ServletContextAware {
 
 	public String getBasePath() {
 		String path = initRequest().getContextPath();
-		String baseContext = initRequest().getScheme() + "://" + initRequest().getServerName() + ":"
-				+ initRequest().getServerPort() + path;
+		String baseContext = initRequest().getScheme() + "://" + initRequest().getServerName() + ":" + initRequest().getServerPort() + path;
 		return baseContext;
 	}
 
@@ -75,8 +80,7 @@ public abstract class BasicController implements ServletContextAware {
 	protected void success(HttpServletResponse response, String fid) throws IOException {
 		response.setContentType("text/plain;charset=UTF-8");
 		try {
-			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.SUCCESS.index).key("fid")
-					.value(fid).key("msg").value(Error.SUCCESS.desc).endObject();
+			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.SUCCESS.index).key("fid").value(fid).key("msg").value(Error.SUCCESS.desc).endObject();
 			response.getWriter().write(jsonWriter.toString());
 		} catch (JSONException e) {
 		}
@@ -85,8 +89,7 @@ public abstract class BasicController implements ServletContextAware {
 	protected void error(HttpServletResponse response, String fid) throws IOException {
 		response.setContentType("text/plain;charset=UTF-8");
 		try {
-			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.FAILURE.index).key("fid")
-					.value(fid).key("msg").value(Error.FAILURE.desc).endObject();
+			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.FAILURE.index).key("fid").value(fid).key("msg").value(Error.FAILURE.desc).endObject();
 			response.getWriter().write(jsonWriter.toString());
 		} catch (JSONException e) {
 		}
@@ -95,8 +98,7 @@ public abstract class BasicController implements ServletContextAware {
 	protected void fileNotFound(HttpServletResponse response, String fid) throws IOException {
 		response.setContentType("text/plain;charset=UTF-8");
 		try {
-			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.FILE_NOT_FOUND.index).key("fid")
-					.value(fid).key("msg").value(Error.FILE_NOT_FOUND.desc).endObject();
+			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.FILE_NOT_FOUND.index).key("fid").value(fid).key("msg").value(Error.FILE_NOT_FOUND.desc).endObject();
 			response.getWriter().write(jsonWriter.toString());
 		} catch (JSONException e) {
 		}
@@ -105,8 +107,7 @@ public abstract class BasicController implements ServletContextAware {
 	protected void noPermissions(HttpServletResponse response, String fid) throws IOException {
 		response.setContentType("text/plain;charset=UTF-8");
 		try {
-			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.NO_PERMISSIONS.index).key("fid")
-					.value(fid).key("msg").value(Error.NO_PERMISSIONS.desc).endObject();
+			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.NO_PERMISSIONS.index).key("fid").value(fid).key("msg").value(Error.NO_PERMISSIONS.desc).endObject();
 			response.getWriter().write(jsonWriter.toString());
 		} catch (JSONException e) {
 		}
@@ -115,17 +116,16 @@ public abstract class BasicController implements ServletContextAware {
 	protected void exception(HttpServletResponse response, Error error) throws IOException {
 		response.setContentType("text/plain;charset=UTF-8");
 		try {
-			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(error.index).key("fid").value("")
-					.key("msg").value(error.desc).endObject();
+			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(error.index).key("fid").value("").key("msg").value(error.desc).endObject();
 			response.getWriter().write(jsonWriter.toString());
 		} catch (JSONException e) {
 		}
 	}
 
-	boolean validate(HttpServletResponse response, String session, String fid) {
-		if (null == session || "".equals(session.trim())) {
+	boolean validate(HttpServletResponse response, String secret_key, String fileType) {
+		if (StringUtils.isEmpty(secret_key) || !AUTHS.contains(secret_key)) {// 不还有本Key
 			try {
-				noPermissions(response, fid);
+				noPermissions(response, fileType);
 				return false;
 			} catch (IOException e) {
 			}

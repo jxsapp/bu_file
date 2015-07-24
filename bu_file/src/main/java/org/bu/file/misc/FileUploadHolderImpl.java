@@ -23,15 +23,15 @@ public class FileUploadHolderImpl implements FileUploadHolder {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("unused")
-	public void saveFileToDisc(MultipartFile multifile, String path, String fid) throws IOException {
+	public void saveFileToDisc(MultipartFile multifile, String path) throws IOException {
 		// 创建目录
 		File dir = new File(path);
-		if (!dir.exists()) {
-			dir.mkdirs();
+		if (null != dir.getParentFile() && !dir.getParentFile().exists()) {
+			dir.getParentFile().mkdirs();
 		}
 		// 读取文件流并保持在指定路径
 		InputStream inputStream = multifile.getInputStream();
-		OutputStream outputStream = new FileOutputStream(path + fid);
+		OutputStream outputStream = new FileOutputStream(path);
 		byte[] buffer = multifile.getBytes();
 		int bytesum = 0;
 		int byteread = 0;
@@ -55,14 +55,13 @@ public class FileUploadHolderImpl implements FileUploadHolder {
 	}
 
 	@Override
-	public BuFile getFileFromDisc(String file, String path) {
+	public BuFile getFileFromDisc(String rootPath, String type, String path) {
 
-		File child = new File(path, file);
+		File child = new File(rootPath, BuFile.getKey(type, path));
 		if (!child.exists()) {
 			return null;
 		}
-		BuFile buFile = new BuFile();
-		buFile.setFileName(file);
+		BuFile buFile = new BuFile(type, path);
 		buFile.setFileData(readFile(child));
 		return buFile;
 	}

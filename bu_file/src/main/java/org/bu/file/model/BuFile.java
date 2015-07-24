@@ -13,16 +13,25 @@ public class BuFile implements Serializable {
 
 	private static final long serialVersionUID = 4179845654439671991L;
 
-	private String fileName;
+	private String fileKey;
 
 	private byte[] fileData;
 
-	public String getFileName() {
-		return fileName;
+	public BuFile(String type, String path) {
+		super();
+		this.fileKey = getKey(type, path);
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public static String getKey(String type, String path) {
+		return type + path;
+	}
+
+	public String getFileKey() {
+		return fileKey;
+	}
+
+	public void setFileKey(String fileKey) {
+		this.fileKey = fileKey;
 	}
 
 	public byte[] getFileData() {

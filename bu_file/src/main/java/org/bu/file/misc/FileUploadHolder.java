@@ -16,11 +16,9 @@ public interface FileUploadHolder {
 	 * @return
 	 * @throws IOException
 	 */
-	public void saveFileToDisc(MultipartFile multifile, String path, String fid)
-			throws IOException;
+	public void saveFileToDisc(MultipartFile multifile, String path) throws IOException;
 
-	public void saveFileToDisc(byte[] bytes, String path, String fid)
-			throws IOException;
+	public void saveFileToDisc(byte[] bytes, String path, String fid) throws IOException;
 
-	public BuFile getFileFromDisc(String fid, String path);
+	public BuFile getFileFromDisc(String rootPath, String type, String path);
 }
