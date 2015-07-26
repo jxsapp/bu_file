@@ -55,6 +55,29 @@ public class FileUploadHolderImpl implements FileUploadHolder {
 	}
 
 	@Override
+	public BuFile getFileFromDisc(String targetPath, String path) {
+		File child = new File(path);
+		targetPath = targetPath + "/temp";
+		if (child == null || !child.exists()) {
+			return null;
+		}
+
+		BuFile buFile = new BuFile("", path);
+		if (child.isDirectory()) {
+			buFile.setZipped(true);
+			path = new AntZipHolder(2048).doZip(path, targetPath);
+			child = new File(path);
+		}
+		buFile.setFileData(readFile(child));
+		if (buFile.isZipped()) {
+			boolean rst = child.delete();
+			System.out.println(rst);
+			child.deleteOnExit();
+		}
+		return buFile;
+	}
+
+	@Override
 	public BuFile getFileFromDisc(String rootPath, String type, String path) {
 
 		File child = new File(rootPath, BuFile.getKey(type, path));

@@ -21,4 +21,6 @@ public interface FileUploadHolder {
 	public void saveFileToDisc(byte[] bytes, String path, String fid) throws IOException;
 
 	public BuFile getFileFromDisc(String rootPath, String type, String path);
+
+	public BuFile getFileFromDisc(String realPath, String path);
 }

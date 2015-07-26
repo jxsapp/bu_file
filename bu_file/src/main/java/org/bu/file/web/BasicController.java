@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.bu.file.misc.Error;
 import org.bu.file.misc.PropertiesHolder;
+import org.bu.file.model.BuError;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONStringer;
 import org.codehaus.jettison.json.JSONWriter;
@@ -38,6 +39,7 @@ public abstract class BasicController implements ServletContextAware {
 		AUTHS.add(PropertiesHolder.getValue("key_zhanqun"));
 		AUTHS.add(PropertiesHolder.getValue("key_qlsx"));
 		AUTHS.add(PropertiesHolder.getValue("key_banjian"));
+		AUTHS.add(PropertiesHolder.getValue("platform_banjian"));
 
 		FILE_TYPES.add(PropertiesHolder.getValue("type_tysb"));
 		FILE_TYPES.add(PropertiesHolder.getValue("type_qlsx"));
@@ -104,13 +106,20 @@ public abstract class BasicController implements ServletContextAware {
 		}
 	}
 
-	protected void noPermissions(HttpServletResponse response, String fid) throws IOException {
+	protected void noPermissions(HttpServletResponse response, String secret_key) throws IOException {
 		response.setContentType("text/plain;charset=UTF-8");
 		try {
-			JSONWriter jsonWriter = new JSONStringer().object().key("rst").value(Error.NO_PERMISSIONS.index).key("fid").value(fid).key("msg").value(Error.NO_PERMISSIONS.desc).endObject();
+			JSONWriter jsonWriter = new JSONStringer().object()//
+					.key("rst").value(Error.NO_PERMISSIONS.index)//
+					.key("key").value(secret_key)//
+					.key("msg").value(Error.NO_PERMISSIONS.desc).endObject();
 			response.getWriter().write(jsonWriter.toString());
 		} catch (JSONException e) {
 		}
+	}
+
+	public BuError noPermissions(String key) {
+		return new BuError(Error.NO_PERMISSIONS, key);
 	}
 
 	protected void exception(HttpServletResponse response, Error error) throws IOException {
@@ -122,10 +131,12 @@ public abstract class BasicController implements ServletContextAware {
 		}
 	}
 
-	boolean validate(HttpServletResponse response, String secret_key, String fileType) {
+	boolean validate(HttpServletResponse response, String secret_key, boolean redirect) {
 		if (StringUtils.isEmpty(secret_key) || !AUTHS.contains(secret_key)) {// 不还有本Key
 			try {
-				noPermissions(response, fileType);
+				if (redirect) {
+					noPermissions(response, secret_key);
+				}
 				return false;
 			} catch (IOException e) {
 			}

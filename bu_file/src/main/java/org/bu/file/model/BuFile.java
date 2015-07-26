@@ -14,6 +14,7 @@ public class BuFile implements Serializable {
 	private static final long serialVersionUID = 4179845654439671991L;
 
 	private String fileKey;
+	private boolean zipped = false;
 
 	private byte[] fileData;
 
@@ -40,6 +41,14 @@ public class BuFile implements Serializable {
 
 	public void setFileData(byte[] fileData) {
 		this.fileData = fileData;
+	}
+
+	public boolean isZipped() {
+		return zipped;
+	}
+
+	public void setZipped(boolean zipped) {
+		this.zipped = zipped;
 	}
 
 }

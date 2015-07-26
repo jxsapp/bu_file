@@ -33,5 +33,28 @@
 				         <input type="submit">
 				 </form>
 			 <body>
-			 </html>				
+			 </html>
+
+
+3、获取监控信息
+	3.1 获取硬件信息	
+		url： http://10.18.23.7:8080/bu_file/monitor/hardware/{secret_key}
+		返回值：
+			{
+			  "error": {
+			    "rst": -1, 
+			    "msg": "success", 
+			    "key": "196eb8e2012345678224f8e84584f424"
+			  }, 
+			  "rst": {
+			    "cupUsage": 0.24934548, 
+			    "cupCore": 3, 
+			    "diskSize": 4742590345481743000, 
+			    "diskUsage": 0.50688, 
+			    "memorySize": 5256006204803416000, 
+			    "memoryUsage": 0.98923904
+			  }
+			}
+	3.2 获取目录信息
+			 				
 	

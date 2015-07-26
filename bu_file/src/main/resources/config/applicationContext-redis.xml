@@ -19,7 +19,7 @@
 
 
 	<!--配置jdbc.properties文件的位置信息，路径还是区分大小写 -->
-	<context:property-placeholder location="classpath:redis.properties" />
+	<context:property-placeholder location="classpath:/config/config.properties" />
 
 	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
 		<property name="locations" value="WEB-INF/jdbc/redis.properties" /> </bean> -->
