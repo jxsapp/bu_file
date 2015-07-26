@@ -56,5 +56,9 @@
 			  }
 			}
 	3.2 获取目录信息
-			 				
+		 http://10.18.23.7:8080/bu_file/monitor/menus/196eb8e2012345678224f8e84584f424?path=/Users/jxs/Desktop/pic
+	3.3 下载文件	
+		http://10.18.23.7:8080/bu_file/share/download/{secret_key}?path={path}
+	3.4
+	
 	
