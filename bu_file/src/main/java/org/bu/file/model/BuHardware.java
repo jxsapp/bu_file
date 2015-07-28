@@ -2,14 +2,16 @@ package org.bu.file.model;
 
 import java.util.Random;
 
+import org.bu.file.misc.FileSizeHolder;
+
 public class BuHardware {
 	private float cupUsage = 0;// CPU使用率
 	private int cupCore = 0;// cup 核数
 
-	private long diskSize = 0;// 监控目录所在的磁盘大小
+	private String diskSize = "0";// 监控目录所在的磁盘大小
 	private float diskUsage = 0; // 监控目录磁盘使用率
 
-	private long memorySize = 0;// 内存总大小
+	private String memorySize = "0";// 内存总大小
 	private float memoryUsage = 0;// 内存使用率
 
 	public static BuHardware getTest() {
@@ -20,10 +22,10 @@ public class BuHardware {
 		hardware.cupUsage = random.nextFloat();// CPU使用率
 		hardware.cupCore = random.nextInt(16);// cup 核数
 
-		hardware.diskSize = random.nextLong();// 监控目录所在的磁盘大小
+		hardware.diskSize = FileSizeHolder.formatFileSize(random.nextLong());// 监控目录所在的磁盘大小
 		hardware.diskUsage = random.nextFloat(); // 监控目录磁盘使用率
 
-		hardware.memorySize = random.nextLong();// 内存总大小
+		hardware.memorySize = FileSizeHolder.formatFileSize(random.nextLong());// 内存总大小
 		hardware.memoryUsage = random.nextFloat();// 内存使用率
 
 		return hardware;
@@ -46,11 +48,11 @@ public class BuHardware {
 		this.cupCore = cupCore;
 	}
 
-	public long getDiskSize() {
+	public String getDiskSize() {
 		return diskSize;
 	}
 
-	public void setDiskSize(long diskSize) {
+	public void setDiskSize(String diskSize) {
 		this.diskSize = diskSize;
 	}
 
@@ -62,11 +64,11 @@ public class BuHardware {
 		this.diskUsage = diskUsage;
 	}
 
-	public long getMemorySize() {
+	public String getMemorySize() {
 		return memorySize;
 	}
 
-	public void setMemorySize(long memorySize) {
+	public void setMemorySize(String memorySize) {
 		this.memorySize = memorySize;
 	}
 

@@ -48,6 +48,15 @@ public class BuMonitorController extends BasicController {
 		return rst;
 	}
 
+	/**
+	 * 监控一个目录
+	 * 
+	 * @param request
+	 * @param response
+	 * @param secret_key
+	 * @param path
+	 * @return
+	 */
 	@RequestMapping(value = "/menus/{secret_key}", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody
 	BuRst menu(HttpServletRequest request, HttpServletResponse response,//
