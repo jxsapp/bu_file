@@ -1,5 +1,6 @@
 package org.bu.file.web;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -140,7 +141,11 @@ public class BuShareFileController extends BasicController {
 		if (null != buFile) {
 			// response.setContentType("application/x-msdownload");
 			response.setContentType("application/octet-stream");
-			String name = path.substring(path.lastIndexOf("/"));
+			File file = new File(path);
+			String name = "";
+			if (null != file) {
+				name = file.getName();
+			}
 			name = name.replaceAll("/", "");
 			name = new String(name.getBytes("UTF-8"), "ISO_8859_1");
 			response.addHeader("Content-Disposition", "attachment;filename=" + name + (buFile.isZipped() ? ".zip" : ""));
