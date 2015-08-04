@@ -36,14 +36,15 @@ public class BuMonitorController extends BasicController {
 	 * @return
 	 */
 	@RequestMapping(value = "/hardware/{secret_key}", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody
-	BuRst hardware(HttpServletRequest request, HttpServletResponse response,//
+	public @ResponseBody BuRst hardware(HttpServletRequest request, HttpServletResponse response, //
 			@PathVariable("secret_key") String secret_key // 分配的KEY
 	) {
+
+		String path = request.getParameter("path");
 		BuRst rst = new BuRst(Error.NO_PERMISSIONS, secret_key);
 		if (validate(response, secret_key, false)) {
 			rst = new BuRst(secret_key);
-			rst.setRst(BuHardware.getTest());
+			rst.setRst(BuHardware.getData(path));
 		}
 		return rst;
 	}
@@ -58,8 +59,7 @@ public class BuMonitorController extends BasicController {
 	 * @return
 	 */
 	@RequestMapping(value = "/menus/{secret_key}", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody
-	BuRst menu(HttpServletRequest request, HttpServletResponse response,//
+	public @ResponseBody BuRst menu(HttpServletRequest request, HttpServletResponse response, //
 			@PathVariable("secret_key") String secret_key, // 分配的KEY
 			@RequestParam("path") String path) {
 		BuError buError = BuError.get(Error.NO_PERMISSIONS, secret_key);

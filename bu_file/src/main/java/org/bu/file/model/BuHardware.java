@@ -1,83 +1,137 @@
 package org.bu.file.model;
 
-import java.util.Random;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.bu.file.misc.FileSizeHolder;
+import org.apache.commons.lang3.StringUtils;
+import org.hyperic.sigar.CpuPerc;
+import org.hyperic.sigar.FileSystem;
+import org.hyperic.sigar.FileSystemUsage;
+import org.hyperic.sigar.Mem;
+import org.hyperic.sigar.Sigar;
+import org.hyperic.sigar.SigarException;
 
 public class BuHardware {
-	private float cupUsage = 0;// CPU使用率
-	private int cupCore = 0;// cup 核数
 
-	private String diskSize = "0";// 监控目录所在的磁盘大小
-	private float diskUsage = 0; // 监控目录磁盘使用率
+	private static Sigar sigar = new Sigar();
 
-	private String memorySize = "0";// 内存总大小
-	private float memoryUsage = 0;// 内存使用率
+	private Object cpus = null;
+	private Object memory = null;
+	private Object disks = null;
+	private Object pathDisk = null;
 
-	public static BuHardware getTest() {
-		Random random = new Random();
-
+	public static BuHardware getData(String path) {
 		BuHardware hardware = new BuHardware();
-
-		hardware.cupUsage = random.nextFloat();// CPU使用率
-		hardware.cupCore = random.nextInt(16);// cup 核数
-
-		hardware.diskSize = FileSizeHolder.formatFileSize(random.nextLong());// 监控目录所在的磁盘大小
-		hardware.diskUsage = random.nextFloat(); // 监控目录磁盘使用率
-
-		hardware.memorySize = FileSizeHolder.formatFileSize(random.nextLong());// 内存总大小
-		hardware.memoryUsage = random.nextFloat();// 内存使用率
-
+		getCpus(hardware);
+		getMomory(hardware);
+		getDiskInfos(hardware, path);
 		return hardware;
+	}
+
+	/**
+	 * @vendor 供应商
+	 * @model 型号(主频包含在内)
+	 * @idle 空闲(比率)
+	 * @user 使用
+	 * @wait等待
+	 * @irq 中断
+	 * @param buHardware
+	 */
+	private static void getCpus(BuHardware buHardware) {
+		try {
+			CpuPerc[] percs = sigar.getCpuPercList();
+			buHardware.setCpus(percs);
+		} catch (SigarException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 * @total 4183597056,
+	 * @ram 3992,
+	 * @used 3210285056,
+	 * @free 973312000,
+	 * @actualUsed 3113713664,
+	 * @actualFree 1069883392,
+	 * @usedPercent 74.42671037198474,
+	 * @freePercent 25.573289628015267
+	 * 
+	 * @param buHardware
+	 */
+	private static void getMomory(BuHardware buHardware) {
+		try {
+			Mem mem = sigar.getMem();
+			buHardware.setMemory(mem);
+		} catch (SigarException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getDiskInfos(BuHardware buHardware, String path) {
+		try {
+			List<BuDeskInfo> disks = new ArrayList<BuDeskInfo>();
+			FileSystem[] fsList = sigar.getFileSystemList();
+			if (null != fsList) {
+				for (FileSystem fs : fsList) {
+					if (fs.getType() == FileSystem.TYPE_LOCAL_DISK) {
+						FileSystemUsage usage = sigar.getFileSystemUsage(fs.getDirName());
+						disks.add(BuDeskInfo.build(usage, fs));
+					}
+				}
+			}
+			buHardware.setDisks(disks);
+		} catch (SigarException e) {
+			e.printStackTrace();
+		}
+		if (!StringUtils.isEmpty(path)) {
+			File file = new File(path);
+			if (null != file && file.exists()) {
+				try {
+					FileSystemUsage usage = sigar.getFileSystemUsage(path);
+					FileSystem fs = new FileSystem();
+					BuDeskInfo deskInfo = BuDeskInfo.build(usage, fs);
+					deskInfo.setDevName(path);
+					buHardware.pathDisk = deskInfo;
+				} catch (SigarException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 	}
 
-	public float getCupUsage() {
-		return cupUsage;
+	public Object getPathDisk() {
+		return pathDisk;
 	}
 
-	public void setCupUsage(float cupUsage) {
-		this.cupUsage = cupUsage;
+	public void setPathDisk(Object pathDisk) {
+		this.pathDisk = pathDisk;
 	}
 
-	public int getCupCore() {
-		return cupCore;
+	public Object getCpus() {
+		return cpus;
 	}
 
-	public void setCupCore(int cupCore) {
-		this.cupCore = cupCore;
+	public void setCpus(Object cpus) {
+		this.cpus = cpus;
 	}
 
-	public String getDiskSize() {
-		return diskSize;
+	public Object getMemory() {
+		return memory;
 	}
 
-	public void setDiskSize(String diskSize) {
-		this.diskSize = diskSize;
+	public void setMemory(Object memory) {
+		this.memory = memory;
 	}
 
-	public float getDiskUsage() {
-		return diskUsage;
+	public Object getDisks() {
+		return disks;
 	}
 
-	public void setDiskUsage(float diskUsage) {
-		this.diskUsage = diskUsage;
-	}
-
-	public String getMemorySize() {
-		return memorySize;
-	}
-
-	public void setMemorySize(String memorySize) {
-		this.memorySize = memorySize;
-	}
-
-	public float getMemoryUsage() {
-		return memoryUsage;
-	}
-
-	public void setMemoryUsage(float memoryUsage) {
-		this.memoryUsage = memoryUsage;
+	public void setDisks(Object disks) {
+		this.disks = disks;
 	}
 
 }
