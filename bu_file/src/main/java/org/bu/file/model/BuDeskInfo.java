@@ -8,7 +8,7 @@ public class BuDeskInfo {
 	private String dirName = "";// "C:\",
 	private String devName = "";// "C:\",
 	private String typeName = "";// "local",
-	private int type = 0;
+	private int type = FileSystem.TYPE_LOCAL_DISK;
 	private String sysTypeName = "";// "NTFS",
 	private String options = "";// "rw",
 

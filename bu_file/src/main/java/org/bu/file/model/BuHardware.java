@@ -92,7 +92,9 @@ public class BuHardware {
 					FileSystemUsage usage = sigar.getFileSystemUsage(path);
 					FileSystem fs = new FileSystem();
 					BuDeskInfo deskInfo = BuDeskInfo.build(usage, fs);
+					deskInfo.setType(FileSystem.TYPE_LOCAL_DISK);
 					deskInfo.setDevName(path);
+					deskInfo.setDirName(path);
 					buHardware.pathDisk = deskInfo;
 				} catch (SigarException e) {
 					e.printStackTrace();
