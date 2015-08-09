@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+    <command name="type_UserData"/>
+    <command name="type_ProcedureData"/>
+    <command name="namespaceData"/>
+    <command name="privilegeData"/>
+    <command name="departmentData"/>
+    <command name="aboutusData"/>
+    <command name="navigationData"/>
+    <command name="topNavigationData"/>
+    <command name="bottomNavigationData"/>
+    <command name="productBigTypeData"/>
+    <command name="navigationTopImageData"/>
+    <command name="productCenterTypeData"/>
+    <command name="navigationProductData"/>
+    <command name="provinceData"/>
+</commands>
