@@ -13,6 +13,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "t_acrea")
 public class BuArea {
+
+	public static final String ROOT_PARENT = "0";
+
 	@javax.persistence.Id
 	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
 	@javax.persistence.OrderBy(value = "id")

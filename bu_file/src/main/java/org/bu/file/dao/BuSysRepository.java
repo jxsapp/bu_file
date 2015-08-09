@@ -10,6 +10,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author Jiang XuSheng
  */
 public interface BuSysRepository extends CrudRepository<BuSys, String> {
-	@Query("from BuSys where version <> '' limit 1 ")
+	@Query("from BuSys where version is not null  ")
 	public BuSys getSys();
 }

@@ -39,7 +39,8 @@ public class DataImportCommand extends Command {
 		init();
 		this.log.info("开始导入数据...，" + SystemInfo.getVersion());
 		for (Command command : this.commands) {
-			TransactionSynchronizationManager.bindResource(this.emf, new EntityManagerHolder(this.emf.createEntityManager()));
+			TransactionSynchronizationManager.bindResource(this.emf,
+					new EntityManagerHolder(this.emf.createEntityManager()));
 			this.log.info("为命令 " + command.getName() + " 打开EntityManager");
 			try {
 				command.execute();
@@ -49,7 +50,8 @@ public class DataImportCommand extends Command {
 				this.log.info("命令 " + command.getName() + " 执行失败");
 			}
 
-			EntityManagerHolder emHolder = (EntityManagerHolder) TransactionSynchronizationManager.unbindResource(this.emf);
+			EntityManagerHolder emHolder = (EntityManagerHolder) TransactionSynchronizationManager
+					.unbindResource(this.emf);
 			EntityManagerFactoryUtils.closeEntityManager(emHolder.getEntityManager());
 			this.log.info("为命令 " + command.getName() + " 关闭EntityManager");
 		}
@@ -60,7 +62,7 @@ public class DataImportCommand extends Command {
 		InputStreamReader reader = null;
 		InputStream in = null;
 		LinkedList<String> datas = new LinkedList<String>();
-		datas.add("/com/jxs/sys/core/config/data.xml");
+		datas.add("/data/data.xml");
 		datas.add("data.local.xml");
 
 		for (String data : datas) {

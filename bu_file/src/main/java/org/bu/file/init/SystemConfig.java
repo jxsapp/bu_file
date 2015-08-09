@@ -1,12 +1,10 @@
 package org.bu.file.init;
 
 import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
 
 import org.bu.file.dao.BuSysService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
@@ -23,9 +21,6 @@ public class SystemConfig implements ApplicationListener {
 
 	@Resource(name = "buSysService")
 	private BuSysService buSysService;
-
-	@Autowired
-	private EntityManagerFactory emf;
 
 	public void init() {
 		if (needImportData()) {
