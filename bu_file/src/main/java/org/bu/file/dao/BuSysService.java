@@ -15,6 +15,7 @@ public class BuSysService {
 	private BuSysRepository repository;
 
 	public boolean hasData() {
-		return repository.count() > 0;
+		long count = repository.count();
+		return count > 0;
 	}
 }

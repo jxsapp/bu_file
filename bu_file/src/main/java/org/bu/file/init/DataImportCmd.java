@@ -22,23 +22,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 @Service("dataImport")
-public class DataImportCommand extends Command {
+public class DataImportCmd extends Cmd {
 
 	@Autowired
 	private EntityManagerFactory emf;
 
 	@Resource(name = "springContextUtil")
 	protected SpringContextUtil springContextUtil;
-	private LinkedList<Command> commands = new LinkedList<Command>();
+	private LinkedList<Cmd> commands = new LinkedList<Cmd>();
 
-	public void addDataImportCommand(Command command) {
+	public void addDataImportCommand(Cmd command) {
 		this.commands.add(command);
 	}
 
 	public void execute() {
 		init();
 		this.log.info("开始导入数据...，" + SystemInfo.getVersion());
-		for (Command command : this.commands) {
+		for (Cmd command : this.commands) {
 			TransactionSynchronizationManager.bindResource(this.emf,
 					new EntityManagerHolder(this.emf.createEntityManager()));
 			this.log.info("为命令 " + command.getName() + " 打开EntityManager");
@@ -101,7 +101,7 @@ public class DataImportCommand extends Command {
 			Element element = (Element) obj;
 			String commandName = element.attributeValue("name");
 			try {
-				Command command = (Command) SpringContextUtil.getBean(commandName);
+				Cmd command = (Cmd) SpringContextUtil.getBean(commandName);
 				command.setName(commandName);
 				addDataImportCommand(command);
 			} catch (Exception e) {
@@ -111,7 +111,7 @@ public class DataImportCommand extends Command {
 	}
 
 	private void printCommand() {
-		for (Command command : this.commands)
+		for (Cmd command : this.commands)
 			this.log.info(command.getName());
 	}
 }

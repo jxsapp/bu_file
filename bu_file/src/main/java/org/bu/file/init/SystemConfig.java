@@ -17,7 +17,7 @@ public class SystemConfig implements ApplicationListener {
 	private static boolean run = false;
 
 	@Resource(name = "dataImport")
-	private Command dataImport = null;
+	private Cmd dataImport = null;
 
 	@Resource(name = "buSysService")
 	private BuSysService buSysService;
@@ -33,12 +33,11 @@ public class SystemConfig implements ApplicationListener {
 	}
 
 	public boolean needImportData() {
-		if (buSysService.hasData()) {
+		if (!buSysService.hasData()) {
 			log.info("数据库里没有初始化数据......");
 			return true;
 		}
 		log.info("数据库里有初始化数据......");
-
 		return false;
 	}
 

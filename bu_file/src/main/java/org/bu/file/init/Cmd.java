@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * @邮箱 bestupon@foxmail.com
  *
  */
-public abstract class Command {
+public abstract class Cmd {
 	protected final Logger log = LoggerFactory.getLogger(super.getClass());
 	private String name;
 
