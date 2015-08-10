@@ -15,8 +15,7 @@ public interface BuAreaRepository extends CrudRepository<BuArea, String> {
 	@Query("from BuArea where parent =? ")
 	List<BuArea> getAreas(String parent);
 
-	@Override
 	@Query("from BuArea where code =? ")
-	boolean exists(String id);
+	List<BuArea> buExists(String code);
 
 }

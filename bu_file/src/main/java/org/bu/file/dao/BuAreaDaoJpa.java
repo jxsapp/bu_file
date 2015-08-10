@@ -24,8 +24,8 @@ public class BuAreaDaoJpa implements BuAreaDao {
 
 	public void saveOrUpdate(BuArea area) {
 
-		boolean exists = repository.exists(area.getCode());
-		if (!exists) {
+		List<BuArea> rst = repository.buExists(area.getCode());
+		if (null == rst || rst.isEmpty() || rst.size() == 0) {
 			repository.save(area);
 		}
 	}

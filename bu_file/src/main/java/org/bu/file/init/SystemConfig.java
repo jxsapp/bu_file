@@ -17,7 +17,7 @@ public class SystemConfig implements ApplicationListener {
 	private static boolean run = false;
 
 	@Resource(name = "dataImport")
-	private Cmd dataImport = null;
+	private BuCmd dataImport = null;
 
 	@Resource(name = "buSysService")
 	private BuSysService buSysService;

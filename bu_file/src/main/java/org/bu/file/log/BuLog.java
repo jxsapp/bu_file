@@ -7,7 +7,7 @@ public class BuLog implements Logger {
 
 	private Logger logger = null;
 
-	public BuLog(Class<?> clazz) {
+	private BuLog(Class<?> clazz) {
 		super();
 		this.logger = org.slf4j.LoggerFactory.getLogger(clazz);
 	}
@@ -227,111 +227,94 @@ public class BuLog implements Logger {
 	}
 
 	@Override
-	public void trace(String arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	public void trace(String format, Object arg) {
+		logger.trace(format, arg);
+	}
+
+	@Override
+	public void trace(String format, Object... arguments) {
+		logger.trace(format, arguments);
 
 	}
 
 	@Override
-	public void trace(String arg0, Object... arg1) {
-		// TODO Auto-generated method stub
-
+	public void trace(String msg, Throwable t) {
+		logger.trace(msg, t);
 	}
 
 	@Override
-	public void trace(String arg0, Throwable arg1) {
-		// TODO Auto-generated method stub
-
+	public void trace(Marker marker, String arg) {
+		logger.trace(marker, arg);
 	}
 
 	@Override
-	public void trace(Marker arg0, String arg1) {
-		// TODO Auto-generated method stub
-
+	public void trace(String format, Object arg1, Object arg2) {
+		logger.trace(format, arg1, arg2);
 	}
 
 	@Override
-	public void trace(String arg0, Object arg1, Object arg2) {
-		// TODO Auto-generated method stub
-
+	public void trace(Marker marker, String format, Object arg) {
+		logger.trace(marker, format, arg);
 	}
 
 	@Override
-	public void trace(Marker arg0, String arg1, Object arg2) {
-		// TODO Auto-generated method stub
-
+	public void trace(Marker marker, String format, Object... argArray) {
+		logger.trace(marker, format, argArray);
 	}
 
 	@Override
-	public void trace(Marker arg0, String arg1, Object... arg2) {
-		// TODO Auto-generated method stub
-
+	public void trace(Marker marker, String msg, Throwable t) {
+		logger.trace(marker, msg, t);
 	}
 
 	@Override
-	public void trace(Marker arg0, String arg1, Throwable arg2) {
-		// TODO Auto-generated method stub
-
+	public void trace(Marker marker, String format, Object arg1, Object arg2) {
+		logger.trace(marker, format, arg1, arg2);
 	}
 
 	@Override
-	public void trace(Marker arg0, String arg1, Object arg2, Object arg3) {
-		// TODO Auto-generated method stub
-
+	public void warn(String msg) {
+		logger.warn(msg);
 	}
 
 	@Override
-	public void warn(String arg0) {
-		// TODO Auto-generated method stub
-
+	public void warn(String format, Object arg) {
+		logger.warn(format, arg);
 	}
 
 	@Override
-	public void warn(String arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
+	public void warn(String format, Object... arguments) {
+		logger.warn(format, arguments);
 	}
 
 	@Override
-	public void warn(String arg0, Object... arg1) {
-		// TODO Auto-generated method stub
-
+	public void warn(String msg, Throwable t) {
+		logger.warn(msg, t);
 	}
 
 	@Override
-	public void warn(String arg0, Throwable arg1) {
-		// TODO Auto-generated method stub
-
+	public void warn(Marker format, String arg) {
+		logger.warn(format, arg);
 	}
 
 	@Override
-	public void warn(Marker arg0, String arg1) {
-		// TODO Auto-generated method stub
-
+	public void warn(String format, Object arg1, Object arg2) {
+		logger.warn(format, arg1, arg2);
 	}
 
 	@Override
-	public void warn(String arg0, Object arg1, Object arg2) {
-		// TODO Auto-generated method stub
-
+	public void warn(Marker marker, String format, Object arg) {
+		logger.warn(marker, format, arg);
 	}
 
 	@Override
-	public void warn(Marker arg0, String arg1, Object arg2) {
-		// TODO Auto-generated method stub
-
+	public void warn(Marker marker, String format, Object... arguments) {
+		logger.warn(marker, format, arguments);
 	}
 
 	@Override
-	public void warn(Marker arg0, String arg1, Object... arg2) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void warn(Marker arg0, String arg1, Throwable arg2) {
-		// TODO Auto-generated method stub
-
+	public void warn(Marker marker, String format, Throwable t) {
+		logger.warn(marker, format, t);
 	}
 
 	@Override
