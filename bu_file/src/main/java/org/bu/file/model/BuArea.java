@@ -12,14 +12,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "t_acrea")
-public class BuArea {
+public class BuArea extends BuModel {
+
+	private static final long serialVersionUID = 1272899045014748440L;
 
 	public static final String ROOT_PARENT = "0";
-
-	@javax.persistence.Id
-	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
-	@javax.persistence.OrderBy(value = "id")
-	private java.lang.Integer id;
 
 	@Column(name = "_code")
 	private String code = "";// 地区代码
@@ -28,14 +25,6 @@ public class BuArea {
 
 	@Column(name = "_parent")
 	private String parent = "";// 树结构，地区归属
-
-	public java.lang.Integer getId() {
-		return id;
-	}
-
-	public void setId(java.lang.Integer id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;

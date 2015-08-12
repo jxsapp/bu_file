@@ -5,24 +5,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_menu_type")
-public class BuMenuType {
-	@javax.persistence.Id
-	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
-	@javax.persistence.OrderBy(value = "id")
-	private java.lang.Integer id;
-
+public class BuMenuType extends BuModel {
+	private static final long serialVersionUID = -2429106506753852726L;
 	private String tpName;// 类型名称
 	private String tpDesc;// 类型描述
-	private String basePath;
 	private String menuId;// 标示文件夹
-
-	public java.lang.Integer getId() {
-		return id;
-	}
-
-	public void setId(java.lang.Integer id) {
-		this.id = id;
-	}
+	private String basePath = "";// 基本路径
 
 	public String getTpName() {
 		return tpName;
@@ -40,20 +28,20 @@ public class BuMenuType {
 		this.tpDesc = tpDesc;
 	}
 
-	public String getBasePath() {
-		return basePath;
-	}
-
-	public void setBasePath(String basePath) {
-		this.basePath = basePath;
-	}
-
 	public String getMenuId() {
 		return menuId;
 	}
 
 	public void setMenuId(String menuId) {
 		this.menuId = menuId;
+	}
+
+	public String getBasePath() {
+		return basePath;
+	}
+
+	public void setBasePath(String basePath) {
+		this.basePath = basePath;
 	}
 
 }

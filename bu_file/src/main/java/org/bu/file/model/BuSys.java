@@ -12,25 +12,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "t_sys")
-public class BuSys {
-	@javax.persistence.Id
-	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
-	@javax.persistence.OrderBy(value = "id")
-	private java.lang.Integer id;
+public class BuSys extends BuModel {
+
+	private static final long serialVersionUID = 5575971014121800549L;
 
 	@Column(name = "_name")
 	private String name = "";// 地区名称
 
 	@Column(name = "_version")
 	private String version = "";// 版本
-
-	public java.lang.Integer getId() {
-		return id;
-	}
-
-	public void setId(java.lang.Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

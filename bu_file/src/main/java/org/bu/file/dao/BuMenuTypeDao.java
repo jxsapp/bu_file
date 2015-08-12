@@ -1,5 +1,7 @@
 package org.bu.file.dao;
 
+import java.util.List;
+
 import org.bu.file.model.BuMenuType;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public interface BuMenuTypeDao {
 
-	BuMenuType getLastestActiveVersion(String id);
+	List<BuMenuType> getAll();
+
+	void saveOrUpdate(BuMenuType buMenuType);
 
 }

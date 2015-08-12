@@ -1,44 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
     http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
-
 	<persistence-unit name="jpa.base" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:h2:~/.h2/bu_file" />
-			<property name="hibernate.connection.username" value="sa" />
-			<property name="hibernate.connection.password" value="" />
-		<!-- 
-			
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:mysql://122.49.6.207:3306/test" />
-			<property name="hibernate.connection.username" value="wxlh" />
-			<property name="hibernate.connection.password" value="wxlh" />
--->			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/gszw?useUnicode=true&amp;characterEncoding=utf8" />
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="wxlh3116" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			
-			<!-- 
-			
-hibernate.dialect=org.hibernate.dialect.PostgreSQL82Dialect
-hibernate.format_sql=false
-hibernate.max_fetch_depth=3
-hibernate.jdbc.fetch_size=50
-hibernate.jdbc.batch_size=50
-hibernate.cache.use_second_level_cache=true
-hibernate.cache.use_structured_entries=true
-hibernate.cache.use_query_cache=true
-#hibernate.cache.provider_class=com.googlecode.hibernate.memcached.MemcachedCacheProvider
-hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
-			 -->
-			
 		</properties>
 	</persistence-unit>
-
 </persistence>

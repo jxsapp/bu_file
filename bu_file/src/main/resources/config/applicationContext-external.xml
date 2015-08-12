@@ -16,4 +16,5 @@
 	<import resource="classpath:/config/applicationContext-spring-mvc.xml" />
 	<import resource="classpath:/config/applicationContext-jpa.xml" />
 	<import resource="classpath:/config/applicationContext-redis.xml" />
+	<import resource="classpath:/config/applicationContext-quartz.xml" />
 </beans>

@@ -1,0 +1,3 @@
+/sharefile/ds_files/,tysb,统一申报材料目录,统一申报所有材料信息
+/sharefile/ds_files/,qlsx,权力事项附件目录,权力事项细项模板、附件材料、流程图等信息
+/sharefile/ds_files/,bjsb,办件上报附件目录,办件上报材料、附件信息

@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bu.file</groupId>
 	<artifactId>org.bu.file</artifactId>
@@ -47,6 +46,7 @@
 		<httpcore.version>4.3.3</httpcore.version>
 		<httpclient.version>4.3.5</httpclient.version>
 		<httpmime.version>4.3.5</httpmime.version>
+		<quartz.version>2.2.0</quartz.version>
 
 		<!-- Other -->
 		<jdk.version>1.7</jdk.version>
@@ -55,11 +55,19 @@
 		<webserver.port>8181</webserver.port>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<downloadSources>false</downloadSources>
+
 	</properties>
 
 
 
 	<dependencies>
+
+		<!-- quartz.version -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz.version}</version>
+		</dependency>
 
 		<!-- Sigar start -->
 		<dependency>
@@ -164,13 +172,9 @@
 			<version>1.2</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency> <groupId>taglibs</groupId> <artifactId>standard</artifactId> 
-			<version>1.1.2</version> <type>jar</type> </dependency> <dependency> <groupId>javax.servlet</groupId> 
-			<artifactId>jstl</artifactId> <version>1.2</version> <type>jar</type> </dependency> 
-			<dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> 
-			<version>2.5</version> <scope>compile</scope> </dependency> <dependency> 
-			<groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> <version>2.1</version> 
-			<scope>compile</scope> </dependency> -->
+		<!-- <dependency> <groupId>taglibs</groupId> <artifactId>standard</artifactId> <version>1.1.2</version> <type>jar</type> </dependency> <dependency> <groupId>javax.servlet</groupId> <artifactId>jstl</artifactId> 
+			<version>1.2</version> <type>jar</type> </dependency> <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> <version>2.5</version> <scope>compile</scope> </dependency> <dependency> 
+			<groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> <version>2.1</version> <scope>compile</scope> </dependency> -->
 		<!-- jsr330 -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -422,11 +426,8 @@
 			<version>${gson.version}</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-core-asl</artifactId> 
-			<version>1.9.13</version> </dependency> <dependency> <groupId>org.codehaus.jackson</groupId> 
-			<artifactId>jackson-mapper-asl</artifactId> <version>1.9.13</version> </dependency> 
-			<dependency> <groupId>com.google.code.gson</groupId> <artifactId>gson</artifactId> 
-			<version>${gson.version}</version> </dependency> -->
+		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-core-asl</artifactId> <version>1.9.13</version> </dependency> <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
+			<version>1.9.13</version> </dependency> <dependency> <groupId>com.google.code.gson</groupId> <artifactId>gson</artifactId> <version>${gson.version}</version> </dependency> -->
 		<!-- freemarker engine -->
 		<dependency>
 			<groupId>org.freemarker</groupId>

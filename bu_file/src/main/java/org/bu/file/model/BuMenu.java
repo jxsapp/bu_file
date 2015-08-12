@@ -12,12 +12,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "t_menu")
-public class BuMenu {
-	@javax.persistence.Id
-	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
-	@javax.persistence.OrderBy(value = "id")
-	private java.lang.Integer id;
+public class BuMenu extends BuModel {
 
+	private static final long serialVersionUID = -8723011296503309114L;
 	private String aliases = "";// 目录别名
 	private String desc = "";// 目录描述
 
@@ -83,14 +80,6 @@ public class BuMenu {
 
 	public void setDelChildSize(long delChildSize) {
 		this.delChildSize = delChildSize;
-	}
-
-	public java.lang.Integer getId() {
-		return id;
-	}
-
-	public void setId(java.lang.Integer id) {
-		this.id = id;
 	}
 
 	public int getOptionType() {
