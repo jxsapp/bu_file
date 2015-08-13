@@ -1,5 +1,7 @@
 package org.bu.file.model;
 
+import java.io.File;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -12,11 +14,24 @@ import javax.persistence.Table;
 @Table(name = "t_store_file")
 public class BuStoreFile extends BuModel {
 	private static final long serialVersionUID = 4179845654439671991L;
-	private String prefix;// 问价
+	
+	
+	public static final String TYPE_DIR="d";
+	public static final String TYPE_FILE="f";
+	
+	
+	private String prefix;// 类型
 	private String areaEncode = "";// 地区编码
 	private String path;// 相对路径
+	private String type="";//文件类型
 	private long size = 0;// 文件大小
 	private long lastTime = 0;// 最后修改时间
+	
+	public static BuStoreFile build(File root){
+		BuStoreFile storeFile = new BuStoreFile();
+		storeFile.areaEncode = "";
+		return storeFile;
+	}
 
 	public String getPrefix() {
 		return prefix;
@@ -57,5 +72,15 @@ public class BuStoreFile extends BuModel {
 	public void setLastTime(long lastTime) {
 		this.lastTime = lastTime;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
 
 }

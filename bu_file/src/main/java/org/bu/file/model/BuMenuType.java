@@ -1,5 +1,7 @@
 package org.bu.file.model;
 
+import java.io.File;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -11,6 +13,10 @@ public class BuMenuType extends BuModel {
 	private String tpDesc;// 类型描述
 	private String menuId;// 标示文件夹
 	private String basePath = "";// 基本路径
+	
+	public File getFilePath(){
+		return new File(basePath,menuId);
+	}
 
 	public String getTpName() {
 		return tpName;

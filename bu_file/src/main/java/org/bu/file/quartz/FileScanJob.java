@@ -8,10 +8,13 @@ public class FileScanJob {
 
 	private static BuLog buLog = BuLog.getLogger(FileScanJob.class);
 
+	 
 	/*
 	 * 用来扫描文件
 	 */
 	public void work() {
 		buLog.info("当前时间:" + new Date().toString());
+		
+		
 	}
 }
