@@ -13,9 +13,5 @@
 						http://www.springframework.org/schema/context 
 						http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<import resource="classpath:/config/applicationContext-beans.xml" />
-	<import resource="classpath:/config/applicationContext-spring-mvc.xml" />
-	<import resource="classpath:/config/applicationContext-jpa.xml" />
-	<import resource="classpath:/config/applicationContext-redis.xml" />
-	<import resource="classpath:/config/applicationContext-quartz.xml" />
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor"/>
 </beans>

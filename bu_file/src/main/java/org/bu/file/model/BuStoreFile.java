@@ -5,6 +5,8 @@ import java.io.File;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.bu.file.misc.BuGsonHolder;
+
 /**
  * 文件模型
  * 
@@ -31,6 +33,11 @@ public class BuStoreFile extends BuModel {
 		BuStoreFile storeFile = new BuStoreFile();
 		storeFile.areaEncode = "";
 		return storeFile;
+	}
+	
+	
+	public String toJson(){
+		return BuGsonHolder.getJson(this);
 	}
 
 	public String getPrefix() {
