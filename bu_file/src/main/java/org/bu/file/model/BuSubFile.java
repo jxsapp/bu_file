@@ -6,8 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bu.core.misc.Timer;
 import org.bu.file.misc.FileSizeHolder;
-import org.bu.file.misc.Timer;
 
 public class BuSubFile {
 	private String name = "";

@@ -21,7 +21,7 @@
 		</property>
 		<property name="cronExpression">
 			<!-- 每10秒执行一次 -->
-			<value>0/10 * * * * ?</value>
+			<value>0/30 * * * * ?</value>
 		</property>
 	</bean>
 

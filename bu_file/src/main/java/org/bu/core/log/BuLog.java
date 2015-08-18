@@ -1,4 +1,4 @@
-package org.bu.file.log;
+package org.bu.core.log;
 
 import org.slf4j.Logger;
 import org.slf4j.Marker;

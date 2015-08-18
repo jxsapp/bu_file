@@ -1,6 +1,6 @@
 package org.bu.file.init;
 
-import org.bu.file.log.BuLog;
+import org.bu.core.log.BuLog;
 
 /**
  * 

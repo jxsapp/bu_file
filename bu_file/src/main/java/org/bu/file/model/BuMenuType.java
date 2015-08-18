@@ -5,6 +5,9 @@ import java.io.File;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.bu.core.model.BuModel;
+import org.bu.file.dic.BuArea;
+
 @Entity
 @Table(name = "t_menu_type")
 public class BuMenuType extends BuModel {
@@ -13,9 +16,21 @@ public class BuMenuType extends BuModel {
 	private String tpDesc;// 类型描述
 	private String menuId;// 标示文件夹
 	private String basePath = "";// 基本路径
-	
-	public File getFilePath(){
-		return new File(basePath,menuId);
+
+	public File buildRootFile() {
+		return new File(basePath, menuId);
+	}
+
+	public String buildrRootPath() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(basePath);
+		builder.append(menuId);
+		builder.append(File.separator);
+		return builder.toString();
+	}
+
+	public String buildrRootPath(BuArea area) {
+		return buildrRootPath() + area.getCode() + File.separator;
 	}
 
 	public String getTpName() {

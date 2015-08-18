@@ -1,8 +1,10 @@
-package org.bu.file.misc;
+package org.bu.core.misc;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+
+import org.bu.file.misc.StringUtils;
 
 public class Timer {
 	public static String getTime(long all) {

@@ -4,42 +4,56 @@ import java.io.File;
 
 import org.bu.file.model.BuMenuType;
 import org.bu.file.model.BuStoreFile;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 public class BuFileScanor implements Runnable {
 	private BuScanListener lister;
 	private File root;
 	private BuMenuType menutype;
-	private ThreadPoolTaskExecutor taskExecutor;
 
-	public BuFileScanor(BuScanListener _lis, BuMenuType menutype,File root, ThreadPoolTaskExecutor taskExecutor) {
+	public BuFileScanor(BuScanListener _lis, BuMenuType menutype, File root) {
 		super();
 		this.lister = _lis;
 		this.menutype = menutype;
 		this.root = root;
-		this.taskExecutor = taskExecutor;
 	}
-
 
 	public void run() {
-		System.out.println("在掃描中。。。"+this.toString());
-		BuStoreFile storeFile = new BuStoreFile();
-		storeFile = BuStoreFile.build(root);
-		if (root.isDirectory()) {
-			storeFile.setType(BuStoreFile.TYPE_DIR);
-			storeFile.setSize(0L);
-			lister.onScaned(storeFile,menutype);
-			File[] children = root.listFiles();
-			if (children != null) {
-				for (File child : children) {
-					BuFileScanor fileProcessor = new BuFileScanor(lister,menutype, child, taskExecutor);
-					taskExecutor.execute(fileProcessor);
+		new Scanler(lister, root, menutype).doScan();
+	}
+
+	private class Scanler {
+
+		private BuScanListener lister;
+		private File root;
+		private BuMenuType menutype;
+
+		public Scanler(BuScanListener lister, File root, BuMenuType menutype) {
+			super();
+			this.lister = lister;
+			this.root = root;
+			this.menutype = menutype;
+		}
+
+		private void doScan() {
+
+			BuStoreFile storeFile = new BuStoreFile();
+			storeFile = BuStoreFile.build(root, menutype);
+			if (root.isDirectory()) {
+				storeFile.setType(BuStoreFile.TYPE_DIR);
+				storeFile.setSize(0L);
+				lister.onScaned(storeFile, menutype);
+				File[] children = root.listFiles();
+				if (children != null) {
+					for (File child : children) {
+						new Scanler(lister, child, menutype).doScan();
+					}
 				}
+			} else {
+				storeFile.setType(BuStoreFile.TYPE_FILE);
+				storeFile.setSize(root.length());
+				lister.onScaned(storeFile, menutype);
 			}
-		} else {
-			storeFile.setType(BuStoreFile.TYPE_FILE);
-			storeFile.setSize(root.length());
-			lister.onScaned(storeFile,menutype);
 		}
 	}
+
 }

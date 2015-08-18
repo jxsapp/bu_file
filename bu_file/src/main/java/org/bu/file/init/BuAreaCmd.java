@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
-import org.bu.file.dao.BuAreaDao;
-import org.bu.file.model.BuArea;
+import org.bu.file.dic.BuArea;
+import org.bu.file.dic.BuAreaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;

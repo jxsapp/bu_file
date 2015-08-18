@@ -1,8 +1,10 @@
-package org.bu.file.model;
+package org.bu.file.dic;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import org.bu.core.model.BuModel;
 
 /**
  * 地区信息
