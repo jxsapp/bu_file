@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/bu_test")
 public class BuTestController extends BasicController {
 
-	private static final BuLog logger = BuLog.getLogger(BuTestController.class);
+	static final BuLog logger = BuLog.getLogger(BuTestController.class);
 
 	private static byte[] rst = "i'm a test data...".getBytes();
 

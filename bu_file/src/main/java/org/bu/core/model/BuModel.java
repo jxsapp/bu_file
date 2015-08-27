@@ -69,7 +69,7 @@ public abstract class BuModel implements Serializable {
 		this.updatedTime = updatedTime;
 	}
 
-	public boolean isNew() {
+	public boolean onCrated() {
 		return null == getSys_id();
 	}
 

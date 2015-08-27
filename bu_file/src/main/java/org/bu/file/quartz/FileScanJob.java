@@ -5,10 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.bu.core.log.BuLog;
+import org.bu.file.dao.BuFileCountDao;
 import org.bu.file.dao.BuMenuTypeDao;
 import org.bu.file.dao.BuStoreFileDao;
 import org.bu.file.dic.BuArea;
 import org.bu.file.dic.BuAreaDao;
+import org.bu.file.model.BuFileCount;
 import org.bu.file.model.BuMenuType;
 import org.bu.file.model.BuStoreFile;
 import org.bu.file.scan.BuScanHolder;
@@ -29,6 +31,13 @@ public class FileScanJob {
 
 	@Autowired
 	private BuStoreFileDao buStoreFileDao;
+
+	@Autowired
+	private BuFileCountDao buFileCountDao;
+
+	public static void setCanScan() {
+		scanned = false;
+	}
 
 	/*
 	 * 用来扫描文件
@@ -59,12 +68,20 @@ public class FileScanJob {
 							}
 						}, buMenuType, rootFile);
 					}
+					// TODO
+					int count = buStoreFileDao.count(buMenuType.getMenuId(), area.getCode());
+					BuFileCount buFileCount = new BuFileCount();
+					buFileCount.setAreaCode(area.getCode());
+					buFileCount.setMenuTypeCode(buMenuType.getMenuId());
+					buFileCount.setCount(count);
+					buFileCountDao.saveOrUpdate(buFileCount);
+//					BuFileWatch.watch(rootFile.getAbsolutePath());
 				}
 			}
 		}
 	}
 
-	class BuCountFileSize {
+	private class BuCountFileSize {
 		int size = 0;
 
 		void count(File... lister) {

@@ -39,7 +39,7 @@ public abstract class BasicController implements ServletContextAware {
 		AUTHS.add(PropertiesHolder.getValue("key_zhanqun"));
 		AUTHS.add(PropertiesHolder.getValue("key_qlsx"));
 		AUTHS.add(PropertiesHolder.getValue("key_banjian"));
-		AUTHS.add(PropertiesHolder.getValue("platform_banjian"));
+		AUTHS.add(PropertiesHolder.getValue("ds_platform"));
 
 		FILE_TYPES.add(PropertiesHolder.getValue("type_tysb"));
 		FILE_TYPES.add(PropertiesHolder.getValue("type_qlsx"));
