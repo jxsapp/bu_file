@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bu.core.log.BuLog;
+import org.bu.core.misc.BuRst;
+import org.bu.core.pact.ErrorcodeException;
 import org.bu.core.web.ControllerSupport;
 import org.bu.file.dao.BuMenuDao;
 import org.bu.file.dic.BuArea;
@@ -19,6 +21,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -30,6 +33,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Scope("prototype")
 @RequestMapping("/bu_test")
 public class BuTestController extends ControllerSupport {
+
+	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody
+	void getCallback(HttpServletRequest request, HttpServletResponse response, @RequestParam("callback") String callback) {// callback
+		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
+
+			@Override
+			public Object getObject(BuRst buRst) throws ErrorcodeException {
+				return "hello world";
+			}
+		}));
+	}
 
 	static final BuLog logger = BuLog.getLogger(BuTestController.class);
 

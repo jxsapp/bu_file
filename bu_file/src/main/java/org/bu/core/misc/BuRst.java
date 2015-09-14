@@ -61,4 +61,8 @@ public class BuRst {
 		this.count = count;
 	}
 
+	public String toJson() {
+		return BuGsonHolder.getJson(this, true);
+	}
+
 }

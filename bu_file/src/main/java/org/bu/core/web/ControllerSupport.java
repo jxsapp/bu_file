@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bu.core.auth.IAuthService;
+import org.bu.core.log.BuLog;
 import org.bu.core.misc.BuError;
 import org.bu.core.misc.BuRst;
 import org.bu.core.pact.ErrorCode;
@@ -25,6 +26,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 public abstract class ControllerSupport implements ServletContextAware {
+
+	protected BuLog buLog = BuLog.getLogger(super.getClass());
 
 	protected ServletContext servletContext;// Servlet 上下文
 	protected String basePath;// 基本路径
@@ -148,6 +151,11 @@ public abstract class ControllerSupport implements ServletContextAware {
 		}
 	}
 
+	protected void result(HttpServletResponse response, String rst) throws IOException {
+		response.setContentType("text/plain;charset=UTF-8");
+		response.getWriter().write(rst);
+	}
+
 	protected boolean validate(HttpServletResponse response, String secret_key, boolean redirect) {
 		if (StringUtils.isEmpty(secret_key) || !AUTHS.contains(secret_key)) {// 不还有本Key
 			try {
@@ -184,6 +192,27 @@ public abstract class ControllerSupport implements ServletContextAware {
 			}
 		} else {
 			return BuRst.getUnAuthorized(this, response);
+		}
+	}
+
+	/**
+	 * 解决跨域问题
+	 * 
+	 * @param request
+	 * @param response
+	 * @param buRst
+	 */
+	protected void crossDomainCallback(HttpServletRequest request, HttpServletResponse response, BuRst buRst) {
+		String crossDomainRst = "%s(%s)";
+		String callback = request.getParameter("callback");
+		String rst = buRst.toJson();
+		if (!StringUtils.isEmpty(callback)) {
+			rst = String.format(crossDomainRst, callback, rst);
+		}
+		try {
+			result(response, rst);
+		} catch (IOException ex) {
+			buLog.error("IOException ", ex);
 		}
 	}
 

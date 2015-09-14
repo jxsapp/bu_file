@@ -31,16 +31,17 @@ public class BuMgrMenuController extends ControllerSupport {
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public BuRst getMenus(HttpServletRequest request, HttpServletResponse response) {
-		return getBuRst(request, response, authService, new BuRstObject() {
+	public void getMenus(HttpServletRequest request, HttpServletResponse response) {
 
+		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
 			@Override
 			public Object getObject(BuRst buRst) throws ErrorcodeException {
 				java.util.List<BuMenu> BuMenus = BuMenuDao.findAll();
 				buRst.setCount(BuMenus.size());
 				return BuMenus;
 			}
-		});
+		}));
+
 	}
 
 	@RequestMapping(value = "/public", method = RequestMethod.POST)

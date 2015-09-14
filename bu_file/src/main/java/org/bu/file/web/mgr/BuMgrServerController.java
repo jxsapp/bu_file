@@ -40,8 +40,8 @@ public class BuMgrServerController extends ControllerSupport {
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public BuRst getMenus(HttpServletRequest request, HttpServletResponse response) {
-		return getBuRst(request, response, authService, new BuRstObject() {
+	public void getMenus(HttpServletRequest request, HttpServletResponse response) {
+		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
 
 			@Override
 			public Object getObject(BuRst buRst) throws ErrorcodeException {
@@ -49,13 +49,13 @@ public class BuMgrServerController extends ControllerSupport {
 				buRst.setCount(BuMenus.size());
 				return BuMenus;
 			}
-		});
+		}));
 	}
 
 	boolean success = false;
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public BuRst createMenu(HttpServletRequest request, HttpServletResponse response,//
+	public void createMenu(HttpServletRequest request, HttpServletResponse response,//
 			@RequestBody final BuMgrServer mgrServer) {
 
 		new BuCliMonitorConnectPact(jsonHttp, new BuHttpListener() {
@@ -70,9 +70,10 @@ public class BuMgrServerController extends ControllerSupport {
 				success = false;
 			}
 		}).connect(getClientUri(mgrServer.getServerIp()));
-
+		
+		BuRst buRst = BuRst.getSuccess();
 		if (success) {
-			return getBuRst(request, response, authService, new BuRstObject() {
+			buRst = getBuRst(request, response, authService, new BuRstObject() {
 
 				@Override
 				public Object getObject(BuRst buRst) throws ErrorcodeException {
@@ -80,15 +81,15 @@ public class BuMgrServerController extends ControllerSupport {
 				}
 			});
 		} else {
-			return BuRst.get(new ErrorcodeException(ErrorCode.CLINET_CONNET_ERROR));
+			buRst = BuRst.get(new ErrorcodeException(ErrorCode.CLINET_CONNET_ERROR));
 		}
-
+		crossDomainCallback(request, response, buRst);
 	}
 
 	@RequestMapping(value = "/delete/{serverId}", method = RequestMethod.DELETE)
-	public BuRst deleteMenu(HttpServletRequest request, HttpServletResponse response,//
+	public void deleteMenu(HttpServletRequest request, HttpServletResponse response,//
 			@PathVariable("serverId") final String serverId) {
-		return getBuRst(request, response, authService, new BuRstObject() {
+		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
 
 			@Override
 			public Object getObject(BuRst buRst) throws ErrorcodeException {
@@ -96,7 +97,7 @@ public class BuMgrServerController extends ControllerSupport {
 				buMgrServerDao.delete(serverId);
 				return serverId;
 			}
-		});
+		}));
 	}
 
 }
