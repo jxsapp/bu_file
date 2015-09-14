@@ -5,27 +5,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
-import org.bu.file.dao.BuMenuTypeDao;
-import org.bu.file.model.BuMenuType;
+import org.bu.file.dao.BuMenuDao;
+import org.bu.file.model.BuMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-@Service("buMenuTypeCmd")
-public class BuMenuTypeCmd extends BuCmd {
+@Service("buMenuCmd")
+public class BuMenuCmd extends BuCmd {
 
 	@Autowired
-	private BuMenuTypeDao buMenuTypeDao;
+	private BuMenuDao BuMenuDao;
 
 	public void execute() {
 		log.info("来数据了。。。");
-		ClassPathResource cr = new ClassPathResource("/data/menu_type.txt");
+		ClassPathResource cr = new ClassPathResource("/data/menus.txt");
 		try {
 			InputStreamReader reader = new InputStreamReader(cr.getInputStream(), "UTF-8");
 			BufferedReader dr = new BufferedReader(reader);
 			String line = "";
 			while ((line = dr.readLine()) != null) {
-				BuMenuType type = new BuMenuType();
+				BuMenu type = new BuMenu();
 				String[] types = line.split(",");
 				if (null != types && types.length == 4) {
 					type.setBasePath(types[0]);
@@ -33,7 +33,7 @@ public class BuMenuTypeCmd extends BuCmd {
 					type.setTpName(types[2]);
 					type.setTpDesc(types[3]);
 				}
-				buMenuTypeDao.saveOrUpdate(type);
+				BuMenuDao.saveOrUpdate(type);
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

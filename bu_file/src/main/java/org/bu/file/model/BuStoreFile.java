@@ -2,6 +2,7 @@ package org.bu.file.model;
 
 import java.io.File;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -24,18 +25,19 @@ public class BuStoreFile extends BuModel {
 
 	private String prefix;// 类型
 	private String areaEncode = "";// 地区编码
+	@Column(name = "path", length = 2000)
 	private String path;// 相对路径
 	private String type = "";// 文件类型
 	private long size = 0;// 文件大小
 	private long lastTime = 0;// 最后修改时间
 	private String secret = "";// 加密标识符
 
-	public static BuStoreFile build(File root, BuMenuType type) {
+	public static BuStoreFile build(File root, BuMenu type) {
 		BuStoreFile storeFile = new BuStoreFile();//
 		storeFile.setPrefix(type.getMenuId());
 
 		String abRoot = root.getAbsolutePath();
-		String path = abRoot.replaceAll(type.buildrRootPath(), "");
+		String path = abRoot.replaceAll(type.buildRootPath(), "");
 		storeFile.setPath(path);// 相对路径
 		if (path.indexOf(File.separator) > 0) {
 			storeFile.setAreaEncode(path.substring(0, path.indexOf(File.separator)));

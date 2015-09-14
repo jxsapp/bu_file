@@ -1,4 +1,4 @@
-package org.bu.file.web;
+package org.bu.core.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bu.core.auth.IAuthService;
+import org.bu.core.misc.BuError;
+import org.bu.core.misc.BuRst;
+import org.bu.core.pact.ErrorCode;
+import org.bu.core.pact.ErrorcodeException;
 import org.bu.file.misc.Error;
 import org.bu.file.misc.PropertiesHolder;
-import org.bu.file.model.BuError;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONStringer;
 import org.codehaus.jettison.json.JSONWriter;
@@ -20,18 +24,20 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-public abstract class BasicController implements ServletContextAware {
+public abstract class ControllerSupport implements ServletContextAware {
 
 	protected ServletContext servletContext;// Servlet 上下文
 	protected String basePath;// 基本路径
 	/**
 	 * 文件在数据库中找不见，从磁盘中获取文件
 	 */
-	static boolean READ_FOR_DISC = PropertiesHolder.getBoolean("get.file.redis.notfound.get.from.disc");
+	protected static boolean READ_FOR_DISC = PropertiesHolder.getBoolean("get.file.redis.notfound.get.from.disc");
 
 	// 过期时间
-	static final long EXPIRE = PropertiesHolder.getLongValue("put.file.expire.seconds");
-	static String ROOT_PATH = PropertiesHolder.getValue("root.file.path");
+	protected static final long EXPIRE = PropertiesHolder.getLongValue("put.file.expire.seconds");
+	protected static String ROOT_PATH = PropertiesHolder.getValue("root.file.path");
+
+	protected static String CLIENT_URI = PropertiesHolder.getValue("client.uri");
 
 	private static List<String> FILE_TYPES = new ArrayList<String>();
 	private static List<String> AUTHS = new ArrayList<String>();
@@ -44,8 +50,19 @@ public abstract class BasicController implements ServletContextAware {
 		FILE_TYPES.add(PropertiesHolder.getValue("type_tysb"));
 		FILE_TYPES.add(PropertiesHolder.getValue("type_qlsx"));
 		FILE_TYPES.add(PropertiesHolder.getValue("type_bjsb"));
-
 	}
+
+	public String getClientUri(String ip) {
+		return String.format(CLIENT_URI, ip);
+	}
+
+	protected static IAuthService authService = new IAuthService() {
+
+		@Override
+		public boolean authority(String token, String action) {
+			return true;
+		}
+	};
 
 	/**
 	 * 导航栏
@@ -131,7 +148,7 @@ public abstract class BasicController implements ServletContextAware {
 		}
 	}
 
-	boolean validate(HttpServletResponse response, String secret_key, boolean redirect) {
+	protected boolean validate(HttpServletResponse response, String secret_key, boolean redirect) {
 		if (StringUtils.isEmpty(secret_key) || !AUTHS.contains(secret_key)) {// 不还有本Key
 			try {
 				if (redirect) {
@@ -142,6 +159,32 @@ public abstract class BasicController implements ServletContextAware {
 			}
 		}
 		return true;
+	}
+
+	public void setRespHeader(HttpServletResponse response, ErrorcodeException e) {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json;charset=UTF-8");
+		response.setIntHeader(ErrorCode.HEADER, e.getErrorcode());
+		response.setHeader(ErrorCode.HEADER_MSG, e.getMessage());
+	}
+
+	public interface BuRstObject {
+		Object getObject(BuRst buRst) throws ErrorcodeException;
+	}
+
+	protected BuRst getBuRst(HttpServletRequest request, HttpServletResponse response, IAuthService authService, BuRstObject buRstObject) {
+		String token = HeaderParser.getToken(request);
+		BuRst buRst = BuRst.getSuccess();
+		if (authService.authority(token, "")) {
+			try {
+				buRst.setRst(buRstObject.getObject(buRst));
+				return buRst;
+			} catch (ErrorcodeException e) {
+				return BuRst.get(this, response, e);
+			}
+		} else {
+			return BuRst.getUnAuthorized(this, response);
+		}
 	}
 
 }

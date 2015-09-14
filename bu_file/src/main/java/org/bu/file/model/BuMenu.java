@@ -1,119 +1,78 @@
 package org.bu.file.model;
 
+import java.io.File;
+
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.bu.core.model.BuModel;
+import org.bu.file.dic.BuArea;
 
-/**
- * 节点
- * 
- * @author jxs
- * 
- */
 @Entity
 @Table(name = "t_menu")
 public class BuMenu extends BuModel {
+	private static final long serialVersionUID = -2429106506753852726L;
+	private static final String SCAN_SUFFIX = "_scan";// suffix
+	private String tpName;// 类型名称
+	private String tpDesc;// 类型描述
+	private String menuId;// 标示文件夹
+	private String basePath = "";// 基本路径
 
-	private static final long serialVersionUID = -8723011296503309114L;
-	private String aliases = "";// 目录别名
-	private String desc = "";// 目录描述
-
-	@OneToOne
-	private BuMenuType menuType;
-	private long warnDiskSize = 0;// 磁盘预警大小
-	private long delDiskSize = 0;
-
-	private long warnChildSize = 0;// 子目录个数
-	private long delChildSize = 0;// 子目录个数
-
-	private int optionType = 0;//
-	private String optionPath = "";// 操作路径
-
-	private long optionChildTime = 0;// 超过限制时操作的时间
-
-	// 时间取值格式：10000*年+1000*月 + 100*日+10小时+1*分钟
-	// 一周以前：700
-
-	public String getAliases() {
-		return aliases;
+	public File buildRootFile() {
+		return new File(basePath, menuId);
 	}
 
-	public void setAliases(String aliases) {
-		this.aliases = aliases;
+	public String buildRootPath() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(basePath);
+		builder.append(menuId);
+		builder.append(File.separator);
+		return builder.toString();
 	}
 
-	public String getDesc() {
-		return desc;
+	public String buildScanRootPath() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(basePath);
+		builder.append(menuId);
+		builder.append(SCAN_SUFFIX);
+		builder.append(File.separator);
+		return builder.toString();
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public String buildRootPath(BuArea area) {
+		return buildRootPath() + area.getCode() + File.separator;
 	}
 
-	public long getWarnDiskSize() {
-		return warnDiskSize;
+	public String getTpName() {
+		return tpName;
 	}
 
-	public void setWarnDiskSize(long warnDiskSize) {
-		this.warnDiskSize = warnDiskSize;
+	public void setTpName(String tpName) {
+		this.tpName = tpName;
 	}
 
-	public long getDelDiskSize() {
-		return delDiskSize;
+	public String getTpDesc() {
+		return tpDesc;
 	}
 
-	public void setDelDiskSize(long delDiskSize) {
-		this.delDiskSize = delDiskSize;
+	public void setTpDesc(String tpDesc) {
+		this.tpDesc = tpDesc;
 	}
 
-	public long getWarnChildSize() {
-		return warnChildSize;
+	public String getMenuId() {
+		return menuId;
 	}
 
-	public void setWarnChildSize(long warnChildSize) {
-		this.warnChildSize = warnChildSize;
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
 	}
 
-	public long getDelChildSize() {
-		return delChildSize;
+	public String getBasePath() {
+		return basePath;
 	}
 
-	public void setDelChildSize(long delChildSize) {
-		this.delChildSize = delChildSize;
-	}
-
-	public int getOptionType() {
-		return optionType;
-	}
-
-	public void setOptionType(int optionType) {
-		this.optionType = optionType;
-	}
-
-	public String getOptionPath() {
-		return optionPath;
-	}
-
-	public void setOptionPath(String optionPath) {
-		this.optionPath = optionPath;
-	}
-
-	public long getOptionChildTime() {
-		return optionChildTime;
-	}
-
-	public void setOptionChildTime(long optionChildTime) {
-		this.optionChildTime = optionChildTime;
-	}
-
-	public BuMenuType getMenuType() {
-		return menuType;
-	}
-
-	public void setMenuType(BuMenuType menuType) {
-		this.menuType = menuType;
+	public void setBasePath(String basePath) {
+		this.basePath = basePath;
 	}
 
 }

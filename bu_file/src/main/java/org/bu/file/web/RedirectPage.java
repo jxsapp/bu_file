@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.bu.core.web.ControllerSupport;
 import org.bu.file.misc.Error;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Jiang XuSheng
  */
 @Controller
-public class RedirectPage extends BasicController {
+public class RedirectPage extends ControllerSupport {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView redirectWebIndex() {
 		return new ModelAndView("login", defaultModel());

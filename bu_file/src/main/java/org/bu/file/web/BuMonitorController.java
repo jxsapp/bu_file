@@ -8,14 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.bu.core.misc.BuError;
+import org.bu.core.web.ControllerSupport;
 import org.bu.file.dao.BuFileCountDao;
-import org.bu.file.dao.BuMenuTypeDao;
+import org.bu.file.dao.BuMenuDao;
 import org.bu.file.dic.BuArea;
 import org.bu.file.dic.BuAreaDao;
 import org.bu.file.misc.Error;
-import org.bu.file.model.BuError;
 import org.bu.file.model.BuHardware;
-import org.bu.file.model.BuMenuType;
+import org.bu.file.model.BuMenu;
 import org.bu.file.model.BuRst;
 import org.bu.file.model.BuSubFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Scope("prototype")
 @RequestMapping("/monitor")
-public class BuMonitorController extends BasicController {
+public class BuMonitorController extends ControllerSupport {
 	static final Logger logger = Logger.getLogger(BuMonitorController.class);
 	static final Set<String> areaCodes = new java.util.HashSet<String>();
 	static final Set<String> menuIds = new java.util.HashSet<String>();
@@ -39,7 +40,7 @@ public class BuMonitorController extends BasicController {
 	private BuAreaDao buAreaDao;
 
 	@Autowired
-	private BuMenuTypeDao buMenuTypeDao;
+	private BuMenuDao BuMenuDao;
 
 	@Autowired
 	private BuFileCountDao buFileCountDao;
@@ -93,8 +94,8 @@ public class BuMonitorController extends BasicController {
 			}
 		}
 		if (menuIds.isEmpty()) {
-			List<BuMenuType> menus = buMenuTypeDao.getAll();
-			for (BuMenuType type : menus) {
+			List<BuMenu> menus = BuMenuDao.findAll();
+			for (BuMenu type : menus) {
 				menuIds.add(type.getMenuId());
 			}
 		}

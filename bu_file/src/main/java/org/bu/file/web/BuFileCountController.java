@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.bu.core.web.ControllerSupport;
 import org.bu.file.dao.BuFileCountDao;
 import org.bu.file.misc.Error;
 import org.bu.file.model.BuRst;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Scope("prototype")
 @RequestMapping("/statistics")
-public class BuFileCountController extends BasicController {
+public class BuFileCountController extends ControllerSupport {
 	static final Logger logger = Logger.getLogger(BuFileCountController.class);
 
 	@Autowired

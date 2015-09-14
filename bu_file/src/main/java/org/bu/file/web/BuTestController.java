@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bu.core.log.BuLog;
-import org.bu.file.dao.BuMenuTypeDao;
+import org.bu.core.web.ControllerSupport;
+import org.bu.file.dao.BuMenuDao;
 import org.bu.file.dic.BuArea;
 import org.bu.file.dic.BuAreaDao;
 import org.bu.file.misc.FileHolder;
-import org.bu.file.model.BuMenuType;
+import org.bu.file.model.BuMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Scope("prototype")
 @RequestMapping("/bu_test")
-public class BuTestController extends BasicController {
+public class BuTestController extends ControllerSupport {
 
 	static final BuLog logger = BuLog.getLogger(BuTestController.class);
 
@@ -38,7 +39,7 @@ public class BuTestController extends BasicController {
 	private BuAreaDao buAreaDao;
 
 	@Autowired
-	private BuMenuTypeDao buMenuTypeDao;
+	private BuMenuDao BuMenuDao;
 
 	private Random random = new Random();
 
@@ -48,11 +49,11 @@ public class BuTestController extends BasicController {
 
 		List<BuArea> areas = buAreaDao.findAll();
 
-		List<BuMenuType> buMenuTypes = buMenuTypeDao.getAll();
+		List<BuMenu> BuMenus = BuMenuDao.findAll();
 
-		for (BuMenuType buMenuType : buMenuTypes) {
+		for (BuMenu BuMenu : BuMenus) {
 			for (BuArea area : areas) {
-				File dir = new File(buMenuType.getBasePath(), buMenuType.getMenuId());
+				File dir = new File(BuMenu.getBasePath(), BuMenu.getMenuId());
 				if (!dir.exists()) {
 					dir.mkdirs();
 				}

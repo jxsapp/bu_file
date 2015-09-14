@@ -2,15 +2,15 @@ package org.bu.file.scan;
 
 import java.io.File;
 
-import org.bu.file.model.BuMenuType;
+import org.bu.file.model.BuMenu;
 import org.bu.file.model.BuStoreFile;
 
 public class BuFileScanor implements Runnable {
 	private BuScanListener lister;
 	private File root;
-	private BuMenuType menutype;
+	private BuMenu menutype;
 
-	public BuFileScanor(BuScanListener _lis, BuMenuType menutype, File root) {
+	public BuFileScanor(BuScanListener _lis, BuMenu menutype, File root) {
 		super();
 		this.lister = _lis;
 		this.menutype = menutype;
@@ -25,9 +25,9 @@ public class BuFileScanor implements Runnable {
 
 		private BuScanListener lister;
 		private File root;
-		private BuMenuType menutype;
+		private BuMenu menutype;
 
-		public Scanler(BuScanListener lister, File root, BuMenuType menutype) {
+		public Scanler(BuScanListener lister, File root, BuMenu menutype) {
 			super();
 			this.lister = lister;
 			this.root = root;

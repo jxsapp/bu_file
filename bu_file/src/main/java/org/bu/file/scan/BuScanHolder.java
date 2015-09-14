@@ -3,7 +3,7 @@ package org.bu.file.scan;
 import java.io.File;
 
 import org.bu.file.misc.SpringContextUtil;
-import org.bu.file.model.BuMenuType;
+import org.bu.file.model.BuMenu;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 public class BuScanHolder {
@@ -24,11 +24,11 @@ public class BuScanHolder {
 		taskExecutor = (ThreadPoolTaskExecutor) SpringContextUtil.getBean("taskExecutor");
 	}
 
-	public void scan(BuScanListener lister, BuMenuType menutype) {
+	public void scan(BuScanListener lister, BuMenu menutype) {
 		scan(lister, menutype, menutype.buildRootFile());
 	}
 
-	public void scan(BuScanListener lister, BuMenuType menutype, File rootFile) {
+	public void scan(BuScanListener lister, BuMenu menutype, File rootFile) {
 		if (rootFile.exists()) {
 			BuFileScanor buFileScanor = new BuFileScanor(lister, menutype, rootFile);
 			taskExecutor.execute(buFileScanor);

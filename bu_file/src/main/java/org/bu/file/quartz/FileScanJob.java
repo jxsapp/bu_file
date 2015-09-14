@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.bu.core.log.BuLog;
 import org.bu.file.dao.BuFileCountDao;
-import org.bu.file.dao.BuMenuTypeDao;
+import org.bu.file.dao.BuMenuDao;
 import org.bu.file.dao.BuStoreFileDao;
 import org.bu.file.dic.BuArea;
 import org.bu.file.dic.BuAreaDao;
 import org.bu.file.model.BuFileCount;
-import org.bu.file.model.BuMenuType;
+import org.bu.file.model.BuMenu;
 import org.bu.file.model.BuStoreFile;
 import org.bu.file.scan.BuScanHolder;
 import org.bu.file.scan.BuScanListener;
@@ -21,10 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class FileScanJob {
 
 	private static BuLog buLog = BuLog.getLogger(FileScanJob.class);
-	private static boolean scanned = false;
+	private static boolean scanning = true;
 
 	@Autowired
-	private BuMenuTypeDao buMenuTypeDao;
+	private BuMenuDao BuMenuDao;
 
 	@Autowired
 	private BuAreaDao buAreaDao;
@@ -35,49 +35,49 @@ public class FileScanJob {
 	@Autowired
 	private BuFileCountDao buFileCountDao;
 
-	public static void setCanScan() {
-		scanned = false;
-	}
-
 	/*
 	 * 用来扫描文件
 	 */
 	public void work() {
 		buLog.info("当前时间:" + new Date().toString());
 
-		if (!ScanToDBHolder.hasPersistencIng() && !scanned) {
-			scanned = true;
-			List<BuMenuType> buMenuTypes = buMenuTypeDao.getAll();
+		// boolean isPersisten = ScanToDBHolder.hasPersistencIng();
+
+		if (!scanning) {
+			scanning = true;
+			List<BuMenu> BuMenus = BuMenuDao.findAll();
 			List<BuArea> areas = buAreaDao.findAll();
-			for (BuMenuType buMenuType : buMenuTypes) {
+			for (BuMenu BuMenu : BuMenus) {
 				for (BuArea area : areas) {
-					File rootFile = new File(buMenuType.buildrRootPath(area));
+					File rootFile = new File(BuMenu.buildRootPath(area));
 					if (!rootFile.exists()) {
 						rootFile.mkdirs();
 					}
 					BuCountFileSize countFileSize = new BuCountFileSize();
 					countFileSize.count(rootFile);
-					int size = countFileSize.getSize();
-					if (buStoreFileDao.count(buMenuType.getMenuId(), area.getCode()) != size) {
+					int size = countFileSize.getSize();// 获取本目录下有文件数变化时在同步
+
+					if (buStoreFileDao.count(BuMenu.getMenuId(), area.getCode()) != size) {
 						BuScanHolder.getInstance().scan(new BuScanListener() {
 							@Override
-							public void onScaned(BuStoreFile storeFile, BuMenuType menutype) {
+							public void onScaned(BuStoreFile storeFile, BuMenu menutype) {
 								if (!storeFile.isDir()) {
-									ScanToDBHolder.sendUdpDataPack(storeFile);
+									ScanToDBHolder.saveStoreFile(storeFile);
 								}
 							}
-						}, buMenuType, rootFile);
+						}, BuMenu, rootFile);
 					}
 					// TODO
-					int count = buStoreFileDao.count(buMenuType.getMenuId(), area.getCode());
+					int count = buStoreFileDao.count(BuMenu.getMenuId(), area.getCode());
 					BuFileCount buFileCount = new BuFileCount();
 					buFileCount.setAreaCode(area.getCode());
-					buFileCount.setMenuTypeCode(buMenuType.getMenuId());
+					buFileCount.setMenuTypeCode(BuMenu.getMenuId());
 					buFileCount.setCount(count);
 					buFileCountDao.saveOrUpdate(buFileCount);
-//					BuFileWatch.watch(rootFile.getAbsolutePath());
+					// BuFileWatch.watch(rootFile.getAbsolutePath());
 				}
 			}
+			scanning = false;
 		}
 	}
 

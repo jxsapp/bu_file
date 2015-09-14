@@ -1,5 +1,6 @@
 package org.bu.file.model;
 
+import org.bu.core.misc.BuError;
 import org.bu.file.misc.Error;
 
 public class BuRst {

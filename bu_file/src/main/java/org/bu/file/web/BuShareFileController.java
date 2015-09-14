@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.bu.core.web.ControllerSupport;
 import org.bu.file.dao.BuFileDao;
 import org.bu.file.misc.DirHolder;
 import org.bu.file.misc.FileUploadHolder;
@@ -25,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @Scope("prototype")
 @RequestMapping("/share")
-public class BuShareFileController extends BasicController {
+public class BuShareFileController extends ControllerSupport {
 	static final Logger logger = Logger.getLogger(BuShareFileController.class);
 
 	@Autowired
