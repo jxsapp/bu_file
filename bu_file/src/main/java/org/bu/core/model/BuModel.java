@@ -41,6 +41,10 @@ public abstract class BuModel implements Serializable {
 	@Expose
 	private Date updatedTime = new Date();
 
+	@Column(name = "status", nullable = true)
+	@Expose
+	private int status = BuStatus.NORMAL.getStatus();
+
 	public BuModel() {
 		super();
 	}
@@ -67,6 +71,14 @@ public abstract class BuModel implements Serializable {
 
 	public void setUpdatedTime(Date updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public boolean onCrated() {
