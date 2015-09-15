@@ -1,7 +1,12 @@
 package org.bu.core.misc;
 
+import org.bu.core.pact.ErrorCode;
 import org.bu.core.pact.ErrorcodeException;
 import org.bu.file.misc.Error;
+import org.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class BuError {
 	private int code;
@@ -10,6 +15,10 @@ public class BuError {
 
 	public BuError(String key) {
 		this(Error.SUCCESS, key);
+	}
+
+	public boolean isSuccess() {
+		return ErrorCode.SUCCESS == getCode();
 	}
 
 	public BuError(ErrorcodeException error) {
@@ -53,6 +62,16 @@ public class BuError {
 
 	public void setKey(String key) {
 		this.key = key;
+	}
+
+	public static BuError getObj(JSONObject json) {
+		BuError list = null;
+		java.lang.reflect.Type type = new TypeToken<BuError>() {
+		}.getType();
+		Gson gson = new Gson();
+		list = gson.fromJson(json.toString(), type);
+		return list;
+
 	}
 
 }

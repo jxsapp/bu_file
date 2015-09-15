@@ -2,6 +2,8 @@ package org.bu.file.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.bu.core.model.BuModel;
@@ -11,7 +13,8 @@ import org.bu.core.model.BuModel;
 public class BuMgrPublish extends BuModel {
 	private static final long serialVersionUID = 2110330618846561394L;
 
-	@Column(name = "mgr_server_id")
+	@ManyToOne
+	@JoinColumn(name = "server_id")
 	private BuMgrServer mgrServer;
 
 	@Column(name = "pub_path", length = 2000)
@@ -19,6 +22,14 @@ public class BuMgrPublish extends BuModel {
 
 	@Column(name = "pub_desc")
 	private String desc;
+
+	public static BuMgrPublish buildPublish(BuCliPublish cliPublish, BuMgrServer mgrServer) {
+		BuMgrPublish buMgrPublish = new BuMgrPublish();
+		buMgrPublish.setMgrServer(mgrServer);
+		buMgrPublish.setPath(cliPublish.getPath());
+		buMgrPublish.setDesc(cliPublish.getDesc());
+		return buMgrPublish;
+	}
 
 	public BuMgrServer getMgrServer() {
 		return mgrServer;

@@ -62,8 +62,10 @@ public class BuHttp {
 			HttpResponse httpResponse = httpclient.execute(httpPut);
 			result(httpResponse, _listener);
 		} catch (ClientProtocolException ex) {
+			logger.error("ClientProtocolException", ex);
 			_listener.onFailuire(ErrorCode.SERVER_ERROR);
 		} catch (IOException ex) {
+			logger.error("IOException", ex);
 			_listener.onFailuire(ErrorCode.SERVER_ERROR);
 		}
 	}

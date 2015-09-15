@@ -67,6 +67,10 @@ public abstract class ControllerSupport implements ServletContextAware {
 		}
 	};
 
+	public IAuthService getAuthService() {
+		return authService;
+	}
+
 	/**
 	 * 导航栏
 	 */
@@ -180,7 +184,7 @@ public abstract class ControllerSupport implements ServletContextAware {
 		Object getObject(BuRst buRst) throws ErrorcodeException;
 	}
 
-	protected BuRst getBuRst(HttpServletRequest request, HttpServletResponse response, IAuthService authService, BuRstObject buRstObject) {
+	public BuRst getBuRst(HttpServletRequest request, HttpServletResponse response, IAuthService authService, BuRstObject buRstObject) {
 		String token = HeaderParser.getToken(request);
 		BuRst buRst = BuRst.getSuccess();
 		if (authService.authority(token, "")) {

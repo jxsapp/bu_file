@@ -1,15 +1,17 @@
 package org.bu.file.misc;
 
+import org.bu.core.pact.ErrorCode;
+
 public enum Error {
 
-	SUCCESS(-1, "success"), //
-	FAILURE(0, "failure"), //
-	NO_PERMISSIONS(2, "No permissions"), //
-	
-	FILE_NOT_FOUND(1010, "File Not Found"), //
-	PATH_NOT_DIRECTORY(1011, "File Not Directory"), //
-	EXCEPTION_404(404, "Page Not Found"), //
-	EXCEPTION_500(404, "Server error");//
+	SUCCESS(ErrorCode.SUCCESS, "success"), //
+	FAILURE(ErrorCode.FAILED, "failure"), //
+	NO_PERMISSIONS(ErrorCode.UNAUTHENTICATED, "No permissions"), //
+
+	FILE_NOT_FOUND(ErrorCode.FILE_NOT_FOUND, "File Not Found"), //
+	PATH_NOT_DIRECTORY(ErrorCode.FILE_NOT_DIRECTORY, "File Not Directory"), //
+	EXCEPTION_404(ErrorCode.PAGE_NOT_FOUND, "Page Not Found"), //
+	EXCEPTION_500(ErrorCode.SERVER_ERROR, "Server error");//
 
 	public int index = 0;
 	public String desc = "";

@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bu.core.log.BuLog;
 import org.bu.core.misc.BuRst;
 import org.bu.core.pact.ErrorcodeException;
@@ -37,10 +38,16 @@ public class BuTestController extends ControllerSupport {
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody
 	void getCallback(HttpServletRequest request, HttpServletResponse response, @RequestParam("callback") String callback) {// callback
+
+		final String name = request.getParameter("name");
+
 		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
 
 			@Override
 			public Object getObject(BuRst buRst) throws ErrorcodeException {
+				if (!StringUtils.isEmpty(name)) {
+					return name;
+				}
 				return "hello world";
 			}
 		}));
