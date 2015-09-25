@@ -44,8 +44,8 @@ public class BuMgrDataCenterController extends ControllerSupport {
 	 * @return
 	 */
 	@RequestMapping(value = "/get", method = { RequestMethod.GET, RequestMethod.POST })
-	public void getMenus(HttpServletRequest request, HttpServletResponse response) {
-		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
+	public BuRst getMenus(HttpServletRequest request, HttpServletResponse response) {
+		return getBuRst(request, response, authService, new BuRstObject() {
 
 			@Override
 			public Object getObject(BuRst buRst) throws ErrorcodeException {
@@ -56,13 +56,13 @@ public class BuMgrDataCenterController extends ControllerSupport {
 				}
 				return dataCenter;
 			}
-		}));
+		});
 	}
 
 	boolean success = false;
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void createMenu(HttpServletRequest request, HttpServletResponse response,//
+	public BuRst createMenu(HttpServletRequest request, HttpServletResponse response,//
 			@RequestBody final BuMgrDataCenter dataCenter) {
 
 		new BuCliMonitorConnectPact(jsonHttp, new BuHttpListener() {
@@ -91,7 +91,7 @@ public class BuMgrDataCenterController extends ControllerSupport {
 		} else {
 			buRst = BuRst.get(new ErrorcodeException(ErrorCode.CLINET_CONNET_ERROR));
 		}
-		crossDomainCallback(request, response, buRst);
+		return buRst;
 	}
 
 }

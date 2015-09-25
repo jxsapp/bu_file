@@ -40,4 +40,9 @@ public class BuSys extends BuModel {
 		this.version = version;
 	}
 
+	
+	@Override
+	public String toString() {
+		return toJson();
+	}
 }

@@ -21,8 +21,8 @@
  1.数据机器管理
  	1.0 增加一台机器
 		-api:  http://localhost:8080/bu_file/mgr/config/server/create
-		-demo: curl -i -X POST -H "Content-Type: application/json" -H "Accept: application/json"  http://localhost:8080/bu_file/mgr/config/server/create -d '{"serverName":"统一申报前置库", "serverIp":"10.18.24.241","serverDesc":"我仅仅是个描述信息"}'
-		-result: {"buRst":{"error":{"code":0,"msg":"success","key":""},"rst":{"sys_id":"58f303a0-0026-485b-8b14-670ac0d9da87","createdTime":1442227021121,"updatedTime":1442227021121,"serverName":"统一申报前置库","serverIp":"10.18.24.241","serverDesc":"我仅仅是个描述信息"},"count":0}}
+		-demo: curl -i -X POST -H "Content-Type: application/json" -H "Accept: application/json"  http://localhost:8080/bu_file/mgr/config/server/create -d '{"serverName":"统一申报前置库", "serverIp":"10.18.24.241","serverDesc":"我仅仅是个描述信息","rootPath":"/Users/jxs"}'
+		-result: {"buRst":{"error":{"code":0,"msg":"success","key":""},"rst":{"sys_id":"58f303a0-0026-485b-8b14-670ac0d9da87","createdTime":1442227021121,"updatedTime":1442227021121,"serverName":"统一申报前置库","serverIp":"10.18.24.241","serverDesc":"我仅仅是个描述信息","rootPath":"/Users/jxs"},"count":0}}
  	1.1 获取机器列表
  		-api:  http://localhost:8080/bu_file/mgr/config/server/list
  		-demo: curl -i -X GET -H "Content-Type: application/json" -H "Accept: application/json"  http://localhost:8080/bu_file/mgr/config/server/list

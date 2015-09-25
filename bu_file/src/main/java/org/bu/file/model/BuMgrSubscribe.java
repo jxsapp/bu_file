@@ -58,6 +58,9 @@ public class BuMgrSubscribe extends BuModel {
 		this.mgrServer = mgrServer;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return toJson();
+	}
 
 }

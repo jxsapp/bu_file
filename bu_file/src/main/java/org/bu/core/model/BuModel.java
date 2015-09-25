@@ -29,21 +29,21 @@ public abstract class BuModel implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")
 	@Expose
-	private String sys_id;
+	protected String sys_id;
 
 	@Column(name = "create_time", nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Expose
-	private Date createdTime = new Date();
+	protected Date createdTime = new Date();
 
 	@Column(name = "updated_time", nullable = true)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Expose
-	private Date updatedTime = new Date();
+	protected Date updatedTime = new Date();
 
 	@Column(name = "status", nullable = true)
 	@Expose
-	private int status = BuStatus.NORMAL.getStatus();
+	protected int status = BuStatus.NORMAL.getStatus();
 
 	public BuModel() {
 		super();
@@ -116,8 +116,6 @@ public abstract class BuModel implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return toJson();
-	}
+	public abstract String toString() ;
 
 }

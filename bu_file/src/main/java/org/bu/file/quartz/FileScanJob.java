@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.camel.CamelContext;
 import org.bu.core.log.BuLog;
-import org.bu.file.camel.BuRouteBuilder;
 import org.bu.file.dao.BuCliCountDao;
 import org.bu.file.dao.BuCliPublishDao;
 import org.bu.file.dao.BuCliStoreDao;
@@ -25,7 +24,7 @@ public class FileScanJob {
 
 	private static BuLog buLog = BuLog.getLogger(FileScanJob.class);
 	private static boolean scanning = true;
-	private static boolean isAddroud = false;
+	private static boolean isAddroud = true;
 
 	@Autowired
 	private BuCliPublishDao buCliPublishDao;
@@ -50,17 +49,16 @@ public class FileScanJob {
 
 		// boolean isPersisten = ScanToDBHolder.hasPersistencIng();
 
-		try {
-			if (!isAddroud) {
-				camelContext.addRoutes(new BuRouteBuilder());
-				isAddroud = true;
-			}
-			camelContext.startAllRoutes();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		if (!scanning) {
+			try {
+//				if (!isAddroud) {
+////					camelContext.addRoutes(new BuRouteBuilder());
+//					isAddroud = true;
+//				}
+//				camelContext.startAllRoutes();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			scanning = true;
 			List<BuCliPublish> buCliPublishs = buCliPublishDao.findAll();
 			List<BuArea> areas = buAreaDao.findAll();

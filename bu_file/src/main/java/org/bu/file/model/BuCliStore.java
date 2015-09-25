@@ -121,4 +121,8 @@ public class BuCliStore extends BuModel {
 		this.cliPublish = cliPublish;
 	}
 
+	@Override
+	public String toString() {
+		return toJson();
+	}
 }

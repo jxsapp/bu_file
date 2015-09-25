@@ -59,4 +59,9 @@ public class BuCliPublish extends BuModel {
 		this.desc = desc;
 	}
 
+	@Override
+	public String toString() {
+		return toJson();
+	}
+
 }

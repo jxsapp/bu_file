@@ -40,34 +40,34 @@ public class BuMgrSubMenuController extends ControllerSupport {
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public void getMenus(HttpServletRequest request, HttpServletResponse response) {
+	public BuRst getMenus(HttpServletRequest request, HttpServletResponse response) {
 
-		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
+		return getBuRst(request, response, authService, new BuRstObject() {
 			@Override
 			public Object getObject(BuRst buRst) throws ErrorcodeException {
 				java.util.List<BuMgrSubscribe> rsts = buMgrSubscribeDao.findAll();
 				buRst.setCount(rsts.size());
 				return rsts;
 			}
-		}));
+		});
 
 	}
 
 	@RequestMapping(value = "/create/{server_id}", method = RequestMethod.POST)
-	public void createMenu(HttpServletRequest request, HttpServletResponse response,//
+	public BuRst createMenu(HttpServletRequest request, HttpServletResponse response,//
 			@PathVariable("server_id") String server_id,// 机器ID订阅者机器号
 			@PathVariable("publish_id") String publish_id// 发布资源ID
 	) {
-		crossDomainCallback(request, response, //
-				new BuMgrSubMenuMaster.BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).subscribe(request, response, server_id, publish_id));
+		return //
+		new BuMgrSubMenuMaster.BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).subscribe(request, response, server_id, publish_id);
 	}
 
 	@RequestMapping(value = "/cancel/{menu_id}", method = RequestMethod.POST)
-	public void cancelMenu(HttpServletRequest request, HttpServletResponse response,//
+	public BuRst cancelMenu(HttpServletRequest request, HttpServletResponse response,//
 			@PathVariable("menu_id") String menu_id// 目录ID
 	) {
-		crossDomainCallback(request, response, //
-				new BuMgrSubMenuMaster.BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).option(request, response, menu_id, BuStatus.CANCELED));
+		return //
+		new BuMgrSubMenuMaster.BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).option(request, response, menu_id, BuStatus.CANCELED);
 	}
 
 }

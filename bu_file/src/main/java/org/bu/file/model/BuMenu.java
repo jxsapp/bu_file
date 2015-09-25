@@ -75,4 +75,9 @@ public class BuMenu extends BuModel {
 		this.basePath = basePath;
 	}
 
+	@Override
+	public String toString() {
+		return toJson();
+	}
+
 }

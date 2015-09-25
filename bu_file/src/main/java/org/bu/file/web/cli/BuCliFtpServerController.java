@@ -48,6 +48,16 @@ public class BuCliFtpServerController extends ControllerSupport {
 		cliServer.setUsername(username);
 
 		buCliServerDao.saveOrUpdate(cliServer);
+
+		if (!buFtpServer.isStop()) {
+			buFtpServer.stop();
+		}
+		try {
+			buFtpServer.init(serverPort, rootPath, username, password);
+		} catch (Exception e) {
+			buLog.error("org.apache.ftpserver.ftplet.FtpException", e);
+		}
+
 		return buRst;
 	}
 

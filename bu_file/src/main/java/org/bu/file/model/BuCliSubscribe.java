@@ -44,4 +44,9 @@ public class BuCliSubscribe extends BuModel {
 		this.publishId = publishId;
 	}
 
+	@Override
+	public String toString() {
+		return toJson();
+	}
+
 }

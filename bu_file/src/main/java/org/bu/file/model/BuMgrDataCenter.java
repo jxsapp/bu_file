@@ -64,4 +64,8 @@ public class BuMgrDataCenter extends BuModel {
 		this.centerPath = centerPath;
 	}
 
+	@Override
+	public String toString() {
+		return toJson();
+	}
 }

@@ -24,7 +24,7 @@ public class BuCliServerInitPact extends PactMaster {
 		return String.format("%s/client/config/ftpserver/init", uri);
 	}
 
-	public void publish(String uri, BuCliServer cliServer) {
+	public void init(String uri, BuCliServer cliServer) {
 		HashMap<String, String> params = new HashMap<String, String>();
 
 		params.put("serverPort", Integer.toString(cliServer.getServerPort()));// PORT

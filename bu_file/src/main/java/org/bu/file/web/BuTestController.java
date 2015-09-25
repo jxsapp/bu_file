@@ -68,11 +68,9 @@ public class BuTestController extends ControllerSupport {
 
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody
-	void getCallback(HttpServletRequest request, HttpServletResponse response, @RequestParam("callback") String callback) {// callback
-
+	BuRst getCallback(HttpServletRequest request, HttpServletResponse response, @RequestParam("callback") String callback) {// callback
 		final String name = request.getParameter("name");
-
-		crossDomainCallback(request, response, getBuRst(request, response, authService, new BuRstObject() {
+		return getBuRst(request, response, authService, new BuRstObject() {
 
 			@Override
 			public Object getObject(BuRst buRst) throws ErrorcodeException {
@@ -81,7 +79,7 @@ public class BuTestController extends ControllerSupport {
 				}
 				return "hello world";
 			}
-		}));
+		});
 	}
 
 	static final BuLog logger = BuLog.getLogger(BuTestController.class);

@@ -50,5 +50,10 @@ public class BuCliCount extends BuModel {
 	public void setCliPublish(BuCliPublish cliPublish) {
 		this.cliPublish = cliPublish;
 	}
+	
+	@Override
+	public String toString() {
+		return toJson();
+	}
 
 }

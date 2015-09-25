@@ -41,5 +41,10 @@ public class BuCliDownload extends BuModel {
 	public void setPath(String path) {
 		this.path = path;
 	}
+	
+	@Override
+	public String toString() {
+		return toJson();
+	}
 
 }

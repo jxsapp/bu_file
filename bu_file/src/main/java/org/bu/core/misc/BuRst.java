@@ -6,10 +6,15 @@ import org.bu.core.pact.ErrorCode;
 import org.bu.core.pact.ErrorcodeException;
 import org.bu.core.web.ControllerSupport;
 
+import com.google.gson.annotations.Expose;
+
 public class BuRst {
 
+	@Expose
 	private BuError error = null;
+	@Expose
 	private Object rst = null;
+	@Expose
 	private int count = 0;
 
 	public BuRst(ErrorcodeException err) {
@@ -66,7 +71,11 @@ public class BuRst {
 	}
 
 	public String toJson() {
-		return BuGsonHolder.getJson(this, true);
+		return toJson(true);
+	}
+
+	public String toJson(boolean all) {
+		return BuGsonHolder.getJson(this, all);
 	}
 
 }
