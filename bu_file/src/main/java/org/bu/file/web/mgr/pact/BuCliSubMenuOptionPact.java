@@ -3,10 +3,10 @@ package org.bu.file.web.mgr.pact;
 import java.util.HashMap;
 
 import org.bu.core.misc.BuJSON;
+import org.bu.core.model.BuStatus;
 import org.bu.core.pact.BuHttp.BuHttpListener;
 import org.bu.core.pact.JsonHttp;
 import org.bu.core.pact.PactMaster;
-import org.bu.file.model.BuCliPublish;
 
 /**
  * 发布目录到客户端去
@@ -14,20 +14,23 @@ import org.bu.file.model.BuCliPublish;
  * @author jxs
  * 
  */
-public class BuCliMenuPublishPact extends PactMaster {
+public class BuCliSubMenuOptionPact extends PactMaster {
 
-	public BuCliMenuPublishPact(JsonHttp jsonHttp, BuHttpListener httpListener) {
+	public BuCliSubMenuOptionPact(JsonHttp jsonHttp, BuHttpListener httpListener) {
 		super(jsonHttp, httpListener);
 	}
 
 	private String getUrl(String uri) {
-		return String.format("%s/client/config/menu/publish", uri);
+		return String.format("%s/client/config/sub_menu/option", uri);
 	}
 
-	public void publish(String uri, BuCliPublish publish) {
+	public void option(String uri, String pubServer, String publishId, BuStatus buStatus) {
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("path", publish.getPath());
-		params.put("desc", publish.getDesc());
+
+		params.put("pubServer", pubServer);
+		params.put("publishId", publishId);
+		params.put("status", Integer.toString(buStatus.getStatus()));
+
 		jsonHttp.postJson(getUrl(uri), params, new BuHttpListener() {
 			@Override
 			public void onSuccess(BuJSON json) {

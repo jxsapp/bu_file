@@ -9,7 +9,8 @@
 						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
 						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
 						http://www.springframework.org/schema/context 
-						http://www.springframework.org/schema/context/spring-context.xsd">
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 
 
@@ -24,4 +25,7 @@
 		<!-- 线程池所使用的缓冲队列 -->
 		<property name="queueCapacity" value="200" />
 	</bean>
+	
+	
+	<bean id="buFtpServer" class="bu.file.ftp.server.BuFtpServer"></bean>
 </beans>

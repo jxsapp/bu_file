@@ -15,6 +15,7 @@ import org.bu.file.dao.BuMgrServerDao;
 import org.bu.file.model.BuMgrServer;
 import org.bu.file.web.mgr.pact.BuCliMonitorConnectPact;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,34 +55,45 @@ public class BuMgrServerController extends ControllerSupport {
 
 	boolean success = false;
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void createMenu(HttpServletRequest request, HttpServletResponse response,//
 			@RequestBody final BuMgrServer mgrServer) {
 
-		new BuCliMonitorConnectPact(jsonHttp, new BuHttpListener() {
-
-			@Override
-			public void onSuccess(BuJSON json) {
-				success = true;
-			}
-
-			@Override
-			public void onFailuire(int status) {
-				success = false;
-			}
-		}).connect(getClientUri(mgrServer.getServerIp()));
-		
 		BuRst buRst = BuRst.getSuccess();
-		if (success) {
-			buRst = getBuRst(request, response, authService, new BuRstObject() {
+
+		if (!mgrServer.validateParams()) {
+			buRst = BuRst.get(new ErrorcodeException(ErrorCode.PARAM_ERROR));
+		}
+
+		BuMgrServer buMgrServer = buMgrServerDao.getDataCenter();
+		if (null == buMgrServer) {
+			buRst = BuRst.get(new ErrorcodeException(ErrorCode.NOT_HAS_DATA_CENTER));
+		}
+		if (buRst.isSuccess()) {
+			new BuCliMonitorConnectPact(jsonHttp, new BuHttpListener() {
 
 				@Override
-				public Object getObject(BuRst buRst) throws ErrorcodeException {
-					return buMgrServerDao.saveOrUpdate(mgrServer);
+				public void onSuccess(BuJSON json) {
+					success = true;
 				}
-			});
-		} else {
-			buRst = BuRst.get(new ErrorcodeException(ErrorCode.CLINET_CONNET_ERROR));
+
+				@Override
+				public void onFailuire(int status) {
+					success = false;
+				}
+			}).connect(getClientUri(mgrServer.getServerIp()));
+
+			if (success) {
+				buRst = getBuRst(request, response, authService, new BuRstObject() {
+
+					@Override
+					public Object getObject(BuRst buRst) throws ErrorcodeException {
+						return buMgrServerDao.saveOrUpdate(mgrServer);
+					}
+				});
+			} else {
+				buRst = BuRst.get(new ErrorcodeException(ErrorCode.CLINET_CONNET_ERROR));
+			}
 		}
 		crossDomainCallback(request, response, buRst);
 	}

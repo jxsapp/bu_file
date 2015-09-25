@@ -2,56 +2,60 @@ package org.bu.file.scan;
 
 import java.io.File;
 
-import org.bu.file.model.BuMenu;
-import org.bu.file.model.BuStoreFile;
+import org.bu.file.model.BuCliPublish;
+import org.bu.file.model.BuCliStore;
 
 public class BuFileScanor implements Runnable {
 	private BuScanListener lister;
 	private File root;
-	private BuMenu menutype;
+	private BuCliPublish cliPublish;
 
-	public BuFileScanor(BuScanListener _lis, BuMenu menutype, File root) {
+	public BuFileScanor(BuScanListener _lis, BuCliPublish cliPublish, File root) {
 		super();
 		this.lister = _lis;
-		this.menutype = menutype;
+		this.cliPublish = cliPublish;
 		this.root = root;
 	}
 
 	public void run() {
-		new Scanler(lister, root, menutype).doScan();
+		new Scanler(lister, root, cliPublish).doScan();
 	}
 
 	private class Scanler {
 
 		private BuScanListener lister;
 		private File root;
-		private BuMenu menutype;
+		private BuCliPublish cliPublish;
 
-		public Scanler(BuScanListener lister, File root, BuMenu menutype) {
+		public Scanler(BuScanListener lister, File root, BuCliPublish cliPublish) {
 			super();
 			this.lister = lister;
 			this.root = root;
-			this.menutype = menutype;
+			this.cliPublish = cliPublish;
 		}
 
 		private void doScan() {
 
-			BuStoreFile storeFile = new BuStoreFile();
-			storeFile = BuStoreFile.build(root, menutype);
+			BuCliStore storeFile = new BuCliStore();
+			storeFile = BuCliStore.build(root, cliPublish);
 			if (root.isDirectory()) {
-				storeFile.setType(BuStoreFile.TYPE_DIR);
+				storeFile.setType(BuCliStore.TYPE_DIR);
 				storeFile.setSize(0L);
-				lister.onScaned(storeFile, menutype);
+				lister.onScaned(storeFile, cliPublish);
 				File[] children = root.listFiles();
 				if (children != null) {
 					for (File child : children) {
-						new Scanler(lister, child, menutype).doScan();
+						new Scanler(lister, child, cliPublish).doScan();
 					}
 				}
 			} else {
-				storeFile.setType(BuStoreFile.TYPE_FILE);
-				storeFile.setSize(root.length());
-				lister.onScaned(storeFile, menutype);
+				long length = root.length();
+				if (length == 0) {
+					System.out.println("" + 0);
+				}
+				storeFile.setType(BuCliStore.TYPE_FILE);
+				storeFile.setSize(length);
+				lister.onScaned(storeFile, cliPublish);
 			}
 		}
 	}

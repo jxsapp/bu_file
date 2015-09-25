@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.bu.core.misc.BuGsonHolder;
@@ -16,14 +18,17 @@ import org.bu.file.misc.SecretHolder;
  * @author jxs
  */
 @Entity
-@Table(name = "t_store_file")
-public class BuStoreFile extends BuModel {
+@Table(name = "t_cli_store")
+public class BuCliStore extends BuModel {
 	private static final long serialVersionUID = 4179845654439671991L;
 
 	public static final String TYPE_DIR = "d";
 	public static final String TYPE_FILE = "f";
 
-	private String prefix;// 类型
+	@ManyToOne
+	@JoinColumn(name = "pub_id")
+	private BuCliPublish cliPublish;
+
 	private String areaEncode = "";// 地区编码
 	@Column(name = "path", length = 2000)
 	private String path;// 相对路径
@@ -32,12 +37,12 @@ public class BuStoreFile extends BuModel {
 	private long lastTime = 0;// 最后修改时间
 	private String secret = "";// 加密标识符
 
-	public static BuStoreFile build(File root, BuMenu type) {
-		BuStoreFile storeFile = new BuStoreFile();//
-		storeFile.setPrefix(type.getMenuId());
+	public static BuCliStore build(File root, BuCliPublish cliPublish) {
+		BuCliStore storeFile = new BuCliStore();//
+		storeFile.setCliPublish(cliPublish);
 
 		String abRoot = root.getAbsolutePath();
-		String path = abRoot.replaceAll(type.buildRootPath(), "");
+		String path = abRoot.replaceAll(cliPublish.getPath() + File.separator, "");
 		storeFile.setPath(path);// 相对路径
 		if (path.indexOf(File.separator) > 0) {
 			storeFile.setAreaEncode(path.substring(0, path.indexOf(File.separator)));
@@ -58,14 +63,6 @@ public class BuStoreFile extends BuModel {
 
 	public String toJson() {
 		return BuGsonHolder.getJson(this, true);
-	}
-
-	public String getPrefix() {
-		return prefix;
-	}
-
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
 	}
 
 	public String getAreaEncode() {
@@ -114,6 +111,14 @@ public class BuStoreFile extends BuModel {
 
 	public void setSecret(String secret) {
 		this.secret = secret;
+	}
+
+	public BuCliPublish getCliPublish() {
+		return cliPublish;
+	}
+
+	public void setCliPublish(BuCliPublish cliPublish) {
+		this.cliPublish = cliPublish;
 	}
 
 }

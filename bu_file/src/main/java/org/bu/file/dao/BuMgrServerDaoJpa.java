@@ -29,6 +29,15 @@ public class BuMgrServerDaoJpa extends GenericDaoJpa<BuMgrServer, String> implem
 	}
 
 	@Override
+	public BuMgrServer getDataCenter() {
+		List<BuMgrServer> rst = repository.getDataCenter(BuMgrServer.DATA_CENTER_YES);
+		if (null != rst && rst.size() > 0) {
+			return rst.get(0);
+		}
+		return null;
+	}
+
+	@Override
 	protected CrudRepository<BuMgrServer, String> getRepository() {
 		return repository;
 	}

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.bu.core.misc.BuError;
 import org.bu.core.web.ControllerSupport;
-import org.bu.file.dao.BuFileCountDao;
+import org.bu.file.dao.BuCliCountDao;
 import org.bu.file.dao.BuMenuDao;
 import org.bu.file.dic.BuArea;
 import org.bu.file.dic.BuAreaDao;
@@ -43,7 +43,7 @@ public class BuMonitorController extends ControllerSupport {
 	private BuMenuDao BuMenuDao;
 
 	@Autowired
-	private BuFileCountDao buFileCountDao;
+	private BuCliCountDao buCliCountDao;
 
 	// @Autowired
 	// private BundleTag
@@ -109,7 +109,7 @@ public class BuMonitorController extends ControllerSupport {
 			if (!file.isDirectory()) {
 				buError = BuError.get(Error.PATH_NOT_DIRECTORY, secret_key);
 			}
-			rst.setRst(BuSubFile.get(buFileCountDao, file, areaCodes, menuIds));
+			rst.setRst(BuSubFile.get(buCliCountDao, file, areaCodes, menuIds));
 		}
 		rst.setError(buError);
 		return rst;

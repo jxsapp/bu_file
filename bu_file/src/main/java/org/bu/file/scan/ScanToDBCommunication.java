@@ -1,6 +1,6 @@
 package org.bu.file.scan;
 
-import org.bu.file.model.BuStoreFile;
+import org.bu.file.model.BuCliStore;
 
 public class ScanToDBCommunication {
 
@@ -18,7 +18,7 @@ public class ScanToDBCommunication {
 		return instance;
 	}
 
-	public void addRequestQueue(BuStoreFile dataPack) {
+	public void addRequestQueue(BuCliStore dataPack) {
 		messageWorker.addRequestQueue(dataPack);
 	}
 

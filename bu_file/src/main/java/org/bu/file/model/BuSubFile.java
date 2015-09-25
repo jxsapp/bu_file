@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bu.core.misc.Timer;
-import org.bu.file.dao.BuFileCountDao;
+import org.bu.file.dao.BuCliCountDao;
 import org.bu.file.misc.FileSizeHolder;
 
 public class BuSubFile {
@@ -23,7 +23,7 @@ public class BuSubFile {
 		this.lastModified = Timer.getSDFyyyy_MM_ddHHmm().format(file.lastModified());
 	}
 
-	public static Map<String, Object> get(BuFileCountDao buFileCountDao, File file, Set<String> areaCodes, Set<String> menuIds) {
+	public static Map<String, Object> get(BuCliCountDao buFileCountDao, File file, Set<String> areaCodes, Set<String> menuIds) {
 
 		Map<String, Object> rst = new LinkedHashMap<String, Object>();
 		List<BuSubFile> directorys = new ArrayList<BuSubFile>();

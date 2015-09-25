@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.bu.core.web.ControllerSupport;
-import org.bu.file.dao.BuFileCountDao;
+import org.bu.file.dao.BuCliCountDao;
 import org.bu.file.misc.Error;
 import org.bu.file.model.BuRst;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class BuFileCountController extends ControllerSupport {
 	static final Logger logger = Logger.getLogger(BuFileCountController.class);
 
 	@Autowired
-	private BuFileCountDao buFileCountDao;
+	private BuCliCountDao buCliCountDao;
 
 	// @Autowired
 	// private BundleTag
@@ -44,7 +44,7 @@ public class BuFileCountController extends ControllerSupport {
 		BuRst rst = new BuRst(Error.NO_PERMISSIONS, menuId);
 		if (validate(response, secret_key, false)) {
 			rst = new BuRst(menuId);
-			rst.setRst(buFileCountDao.findAll(menuId));
+			rst.setRst(buCliCountDao.findAll(menuId));
 		}
 		return rst;
 	}

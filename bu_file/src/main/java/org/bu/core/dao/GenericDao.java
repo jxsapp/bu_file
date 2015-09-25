@@ -3,6 +3,8 @@ package org.bu.core.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Query;
+
 /**
  * generic dao interface definition.
  * 
@@ -32,6 +34,13 @@ public interface GenericDao<T, PK extends Serializable> {
 	Long count();
 
 	/**
+	 * check has data
+	 * 
+	 * @return
+	 */
+	boolean hasData();
+
+	/**
 	 * find all entity.
 	 * 
 	 * @return
@@ -45,6 +54,8 @@ public interface GenericDao<T, PK extends Serializable> {
 	 * @return
 	 */
 	List<T> findAll(String hql, Object... params);
+
+	Query query(String hql, Object... params);
 
 	/**
 	 * find page list.

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.bu.core.misc.BuRst;
+import org.bu.core.model.BuStatus;
 import org.bu.core.pact.ErrorCode;
 import org.bu.core.pact.ErrorcodeException;
 import org.bu.core.web.ControllerSupport;
@@ -19,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/client/config/menu")
-public class BuCliMenuController extends ControllerSupport {
-	static final Logger logger = Logger.getLogger(BuCliMenuController.class);
+@RequestMapping("/client/config/pub_menu")
+public class BuCliPubMenuController extends ControllerSupport {
+	static final Logger logger = Logger.getLogger(BuCliPubMenuController.class);
 
 	@Autowired
 	private BuCliPublishDao buCliPublishDao;
@@ -66,9 +67,26 @@ public class BuCliMenuController extends ControllerSupport {
 		});
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-	public void deleteMenu(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/option", method = RequestMethod.POST)
+	public BuRst cancelMenu(HttpServletRequest request, HttpServletResponse response,//
+			@RequestParam("path") final String path,// 目录ID
+			@RequestParam("status") final int status// 目录ID
 
+	) {
+		BuStatus buStatus = BuStatus.buildStatus(status);
+		if (buStatus.isInvalid()) {
+			return BuRst.get(new ErrorcodeException(ErrorCode.PARAM_ERROR));
+		}
+		final BuCliPublish buCliPublish = buCliPublishDao.updateStatus(path, buStatus);
+		BuRst buRst = BuRst.get(new ErrorcodeException(ErrorCode.CLINET_PUBLISH_MENU_EXISTED));
+		if (null != buCliPublish) {// 如果文件不存在
+			buRst = getBuRst(request, response, authService, new BuRstObject() {
+				@Override
+				public Object getObject(BuRst buRst) throws ErrorcodeException {
+					return buCliPublish;
+				}
+			});
+		}
+		return buRst;
 	}
-
 }

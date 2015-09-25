@@ -4,15 +4,18 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.camel.CamelContext;
 import org.bu.core.log.BuLog;
-import org.bu.file.dao.BuFileCountDao;
-import org.bu.file.dao.BuMenuDao;
-import org.bu.file.dao.BuStoreFileDao;
+import org.bu.file.camel.BuRouteBuilder;
+import org.bu.file.dao.BuCliCountDao;
+import org.bu.file.dao.BuCliPublishDao;
+import org.bu.file.dao.BuCliStoreDao;
 import org.bu.file.dic.BuArea;
 import org.bu.file.dic.BuAreaDao;
-import org.bu.file.model.BuFileCount;
-import org.bu.file.model.BuMenu;
-import org.bu.file.model.BuStoreFile;
+import org.bu.file.model.BuCliCount;
+import org.bu.file.model.BuCliPublish;
+import org.bu.file.model.BuCliStore;
+import org.bu.file.model.BuFileSql;
 import org.bu.file.scan.BuScanHolder;
 import org.bu.file.scan.BuScanListener;
 import org.bu.file.scan.ScanToDBHolder;
@@ -22,18 +25,22 @@ public class FileScanJob {
 
 	private static BuLog buLog = BuLog.getLogger(FileScanJob.class);
 	private static boolean scanning = true;
+	private static boolean isAddroud = false;
 
 	@Autowired
-	private BuMenuDao BuMenuDao;
+	private BuCliPublishDao buCliPublishDao;
 
 	@Autowired
 	private BuAreaDao buAreaDao;
 
 	@Autowired
-	private BuStoreFileDao buStoreFileDao;
+	private BuCliStoreDao buCliStoreDao;
 
 	@Autowired
-	private BuFileCountDao buFileCountDao;
+	private BuCliCountDao buCliCountDao;
+
+	@Autowired
+	private CamelContext camelContext;
 
 	/*
 	 * 用来扫描文件
@@ -43,13 +50,23 @@ public class FileScanJob {
 
 		// boolean isPersisten = ScanToDBHolder.hasPersistencIng();
 
+		try {
+			if (!isAddroud) {
+				camelContext.addRoutes(new BuRouteBuilder());
+				isAddroud = true;
+			}
+			camelContext.startAllRoutes();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		if (!scanning) {
 			scanning = true;
-			List<BuMenu> BuMenus = BuMenuDao.findAll();
+			List<BuCliPublish> buCliPublishs = buCliPublishDao.findAll();
 			List<BuArea> areas = buAreaDao.findAll();
-			for (BuMenu BuMenu : BuMenus) {
+			for (BuCliPublish cliPublish : buCliPublishs) {
 				for (BuArea area : areas) {
-					File rootFile = new File(BuMenu.buildRootPath(area));
+					File rootFile = new File(cliPublish.buildRootPath(area));
 					if (!rootFile.exists()) {
 						rootFile.mkdirs();
 					}
@@ -57,23 +74,26 @@ public class FileScanJob {
 					countFileSize.count(rootFile);
 					int size = countFileSize.getSize();// 获取本目录下有文件数变化时在同步
 
-					if (buStoreFileDao.count(BuMenu.getMenuId(), area.getCode()) != size) {
-						BuScanHolder.getInstance().scan(new BuScanListener() {
+					int stroreSize = buCliStoreDao.count(cliPublish.getSys_id(), area.getCode());
+
+					if (stroreSize == 0 || stroreSize != size) {
+						BuScanHolder.getInstance().scanDirs(new BuScanListener() {
 							@Override
-							public void onScaned(BuStoreFile storeFile, BuMenu menutype) {
+							public void onScaned(BuCliStore storeFile, BuCliPublish cliPublish) {
 								if (!storeFile.isDir()) {
 									ScanToDBHolder.saveStoreFile(storeFile);
 								}
 							}
-						}, BuMenu, rootFile);
+						}, cliPublish, rootFile);
 					}
 					// TODO
-					int count = buStoreFileDao.count(BuMenu.getMenuId(), area.getCode());
-					BuFileCount buFileCount = new BuFileCount();
+					BuFileSql buFileSql = buCliStoreDao.calculate(cliPublish.getSys_id(), area.getCode());
+					BuCliCount buFileCount = new BuCliCount();
 					buFileCount.setAreaCode(area.getCode());
-					buFileCount.setMenuTypeCode(BuMenu.getMenuId());
-					buFileCount.setCount(count);
-					buFileCountDao.saveOrUpdate(buFileCount);
+					buFileCount.setCliPublish(cliPublish);
+					buFileCount.setCount(buFileSql.getCount());
+					buFileCount.setSize(buFileSql.getSize());
+					buCliCountDao.saveOrUpdate(buFileCount);
 					// BuFileWatch.watch(rootFile.getAbsolutePath());
 				}
 			}

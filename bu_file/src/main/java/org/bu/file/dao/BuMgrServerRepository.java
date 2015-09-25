@@ -15,4 +15,7 @@ public interface BuMgrServerRepository extends CrudRepository<BuMgrServer, Strin
 
 	@Query("from BuMgrServer where serverIp =? ")
 	List<BuMgrServer> buExists(String serverIp);
+
+	@Query("from BuMgrServer where dataCenter =? ")
+	List<BuMgrServer> getDataCenter(int dataCenter);
 }

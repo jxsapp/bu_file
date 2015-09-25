@@ -12,4 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface BuMgrServerDao extends GenericDao<BuMgrServer, String> {
 	BuMgrServer saveOrUpdate(BuMgrServer buMgrServer);
+
+	BuMgrServer getDataCenter();
 }

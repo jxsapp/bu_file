@@ -37,6 +37,22 @@ public abstract class GenericDaoJpa<T, PK extends Serializable> implements Gener
 	}
 
 	@Override
+	public boolean hasData() {
+		return count() > 0;
+	}
+
+	@Override
+	public Query query(String hql, Object... params) {
+		Query query = em.createQuery(hql);
+		if (null != params) {
+			for (int index = 1; index <= params.length; index++) {
+				query.setParameter(index, params[index - 1]);
+			}
+		}
+		return query;
+	}
+
+	@Override
 	public List<T> findAll(String hql, Object... params) {
 		Query query = em.createQuery(hql);
 		if (null != params) {

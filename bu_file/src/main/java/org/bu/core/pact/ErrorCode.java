@@ -16,6 +16,7 @@ public class ErrorCode {
 	public static String HEADER_MSG = "error_msg";
 
 	public static int UNAUTHENTICATED = 1000;
+	public static int NOT_HAS_DATA_CENTER = 1001;
 	public static int FILE_NOT_FOUND = 1010;
 	public static int FILE_NOT_DIRECTORY = 1011;
 
@@ -41,6 +42,11 @@ public class ErrorCode {
 
 		revalue.put(SERVER_ERROR, "server's error");
 		revalue.put(PARAM_ERROR, "paramter's error");
+
+		revalue.put(UNAUTHENTICATED, " un auth");
+		revalue.put(NOT_HAS_DATA_CENTER, "not has data center");
+		revalue.put(FILE_NOT_FOUND, "file not found");
+		revalue.put(FILE_NOT_DIRECTORY, "this is not dirrectory ");
 
 		revalue.put(CLINET_CONNET_ERROR, "the server connect error");
 		revalue.put(CLINET_PUBLISH_MENU_EXISTED, "the publish menu does not exist ");

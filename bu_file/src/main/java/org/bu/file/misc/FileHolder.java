@@ -247,6 +247,11 @@ public class FileHolder {
 			s = strSize.substring(0, L - 3) + "k";
 		return (s);
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(FormetFileSize(31821226L));
+		System.out.println(FormetFileSize(124341120L));
+	}
 
 	public static String FormetFileSize(long fileS) {// 转换文件大小
 

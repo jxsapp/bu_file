@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ftpserver.ftplet.FtpException;
 import org.bu.core.log.BuLog;
 import org.bu.core.misc.BuRst;
 import org.bu.core.pact.ErrorcodeException;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bu.file.ftp.server.BuFtpServer;
+
 /**
  * 页面跳转拦截器
  * 
@@ -34,6 +37,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Scope("prototype")
 @RequestMapping("/bu_test")
 public class BuTestController extends ControllerSupport {
+
+	private BuLog buLog = BuLog.getLogger(BuTestController.class);
+
+	@Autowired
+	private BuFtpServer buFtpServer;
+
+	@RequestMapping(value = "/ftp/start", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody
+	String ftpStart(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			buFtpServer.init(null);
+		} catch (FtpException e) {
+			buLog.error("FtpException", e);
+		}
+		try {
+			success(response, "nihao");
+		} catch (Exception e) {
+
+		}
+		return "starting";
+	}
+
+	@RequestMapping(value = "/ftp/stop", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody
+	String ftpStop(HttpServletRequest request, HttpServletResponse response) {
+		buFtpServer.stop();
+		return "ftp stop";
+	}
 
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody
@@ -73,9 +104,9 @@ public class BuTestController extends ControllerSupport {
 
 		List<BuMenu> BuMenus = BuMenuDao.findAll();
 
-		for (BuMenu BuMenu : BuMenus) {
+		for (BuMenu bumenu : BuMenus) {
 			for (BuArea area : areas) {
-				File dir = new File(BuMenu.getBasePath(), BuMenu.getMenuId());
+				File dir = new File(bumenu.getBasePath(), bumenu.getMenuId());
 				if (!dir.exists()) {
 					dir.mkdirs();
 				}

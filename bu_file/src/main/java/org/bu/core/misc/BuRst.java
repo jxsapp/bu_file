@@ -30,6 +30,10 @@ public class BuRst {
 		return new BuRst(new ErrorcodeException(ErrorCode.SUCCESS, "success"));
 	}
 
+	public boolean isSuccess() {
+		return error.isSuccess();
+	}
+
 	public static BuRst getUnAuthorized(ControllerSupport support, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		ErrorcodeException e = new ErrorcodeException(ErrorCode.UNAUTHENTICATED);

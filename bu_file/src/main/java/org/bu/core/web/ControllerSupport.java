@@ -27,6 +27,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 public abstract class ControllerSupport implements ServletContextAware {
 
+	public static final int PAGE_SIZE = 20;
+
 	protected BuLog buLog = BuLog.getLogger(super.getClass());
 
 	protected ServletContext servletContext;// Servlet 上下文
