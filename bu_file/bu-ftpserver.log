@@ -1,0 +1,587 @@
+09/26 12:23:03.972 INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization started
+09/26 12:23:04.170 INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sat Sep 26 12:23:04 CST 2015]; root of context hierarchy
+09/26 12:23:04.272 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-external.xml]
+09/26 12:23:04.516 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-beans.xml]
+09/26 12:23:04.562 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-spring-mvc.xml]
+09/26 12:23:04.997 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-jpa.xml]
+09/26 12:23:06.730 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-redis.xml]
+09/26 12:23:06.764 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-quartz.xml]
+09/26 12:23:06.789 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-camel.xml]
+09/26 12:23:08.690 INFO  o.s.c.s.PropertySourcesPlaceholderConfigurer - Loading properties file from class path resource [config/config.properties]
+09/26 12:23:08.702 INFO  o.s.b.f.c.PropertyPlaceholderConfigurer - Loading properties file from class path resource [config/config.properties]
+09/26 12:23:08.714 INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+09/26 12:23:08.952 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'dataSource' of type [class org.apache.tomcat.jdbc.pool.DataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:23:09.010 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'jpa.base'
+09/26 12:23:12.443 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:23:12.497 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'jedisPoolConfig' of type [class redis.clients.jedis.JedisPoolConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:23:12.526 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'connectionFactory' of type [class org.springframework.data.redis.connection.jedis.JedisConnectionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:23:12.588 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:23:12.592 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:23:12.642 INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4e7e323: defining beans [taskExecutor,buFtpServer,ftpStrategy,simpleRouteBuilder,buCliCountDao,buCliDownloadDao,buCliPublishDao,buCliServerDao,buCliStoreDao,buCliSubscribeDao,buFileDao,buMenuDao,buMgrDataCenterDao,buMgrPublishDao,buMgrServerDao,buMgrSubscribeDao,buSysDao,buSysService,buAreaDao,buAreaCmd,buMenuCmd,dataImport,systemConfig,fileUploadHolder,springContextUtil,buFileCountController,buMonitorController,buShareFileController,buTestController,redirectPage,buCliFtpServerController,buCliMonitorController,buCliPubMenuController,buCliStoreController,buCliSubMenuController,buMgrDataCenterController,buMgrPubMenuController,buMgrServerController,buMgrSubMenuController,jsonHttp,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,defaultAnnotationHandlerMapping,annotationMethodHandlerAdapter,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,buMgrSubscribeRepository,buCliSubscribeRepository,buCliStoreRepository,buCliDownloadRepository,buSysRepository,buMgrPublishRepository,buMgrDataCenterRepository,buAreaRepository,buCliCountRepository,buMenuRepository,buMgrServerRepository,buCliPublishRepository,buCliServerRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,entityManagerFactory,transactionManager,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,dataSource,defaultCacheManager,ehCache,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,jedisPoolConfig,connectionFactory,redisTemplate,fileScanJob,myJobTrigger,myJobDetail,startQuertz,template,consumerTemplate,camel:beanPostProcessor,camel,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+09/26 12:23:12.657 INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService  'taskExecutor'
+09/26 12:23:14.629 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/statistics/file_count/{secret_key}/{menuId}] onto handler 'buFileCountController'
+09/26 12:23:14.629 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/statistics/file_count/{secret_key}/{menuId}.*] onto handler 'buFileCountController'
+09/26 12:23:14.629 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/statistics/file_count/{secret_key}/{menuId}/] onto handler 'buFileCountController'
+09/26 12:23:14.630 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/hardware/{secret_key}] onto handler 'buMonitorController'
+09/26 12:23:14.631 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/hardware/{secret_key}.*] onto handler 'buMonitorController'
+09/26 12:23:14.631 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/hardware/{secret_key}/] onto handler 'buMonitorController'
+09/26 12:23:14.631 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/menus/{secret_key}] onto handler 'buMonitorController'
+09/26 12:23:14.631 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/menus/{secret_key}.*] onto handler 'buMonitorController'
+09/26 12:23:14.631 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/menus/{secret_key}/] onto handler 'buMonitorController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/get/{secret_key}/{type}] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/get/{secret_key}/{type}.*] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/get/{secret_key}/{type}/] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/put/{secret_key}/{type}] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/put/{secret_key}/{type}.*] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/put/{secret_key}/{type}/] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/download/{secret_key}] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/download/{secret_key}.*] onto handler 'buShareFileController'
+09/26 12:23:14.633 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/download/{secret_key}/] onto handler 'buShareFileController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/scan] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/scan.*] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/scan/] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/start] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/start.*] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/start/] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/stop] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/stop.*] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/stop/] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/callback] onto handler 'buTestController'
+09/26 12:23:14.635 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/callback.*] onto handler 'buTestController'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/callback/] onto handler 'buTestController'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/index] onto handler 'redirectPage'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/index.*] onto handler 'redirectPage'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/index/] onto handler 'redirectPage'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error404] onto handler 'redirectPage'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error404.*] onto handler 'redirectPage'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error404/] onto handler 'redirectPage'
+09/26 12:23:14.636 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error500] onto handler 'redirectPage'
+09/26 12:23:14.637 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error500.*] onto handler 'redirectPage'
+09/26 12:23:14.637 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error500/] onto handler 'redirectPage'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/init] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/init.*] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/init/] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/start] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/start.*] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/start/] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/stop] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/stop.*] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/stop/] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/isalive] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/isalive.*] onto handler 'buCliFtpServerController'
+09/26 12:23:14.638 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/isalive/] onto handler 'buCliFtpServerController'
+09/26 12:23:14.639 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/connect] onto handler 'buCliMonitorController'
+09/26 12:23:14.639 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/connect.*] onto handler 'buCliMonitorController'
+09/26 12:23:14.639 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/connect/] onto handler 'buCliMonitorController'
+09/26 12:23:14.639 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/hardware] onto handler 'buCliMonitorController'
+09/26 12:23:14.639 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/hardware.*] onto handler 'buCliMonitorController'
+09/26 12:23:14.639 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/hardware/] onto handler 'buCliMonitorController'
+09/26 12:23:14.640 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/list] onto handler 'buCliPubMenuController'
+09/26 12:23:14.640 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/list.*] onto handler 'buCliPubMenuController'
+09/26 12:23:14.640 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/list/] onto handler 'buCliPubMenuController'
+09/26 12:23:14.640 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/publish] onto handler 'buCliPubMenuController'
+09/26 12:23:14.640 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/publish.*] onto handler 'buCliPubMenuController'
+09/26 12:23:14.641 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/publish/] onto handler 'buCliPubMenuController'
+09/26 12:23:14.641 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/option] onto handler 'buCliPubMenuController'
+09/26 12:23:14.641 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/option.*] onto handler 'buCliPubMenuController'
+09/26 12:23:14.641 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/option/] onto handler 'buCliPubMenuController'
+09/26 12:23:14.641 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/store/list/{lastTime}] onto handler 'buCliStoreController'
+09/26 12:23:14.641 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/store/list/{lastTime}.*] onto handler 'buCliStoreController'
+09/26 12:23:14.641 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/store/list/{lastTime}/] onto handler 'buCliStoreController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/list] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/list.*] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/list/] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/subscribe] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/subscribe.*] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/subscribe/] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/option] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/option.*] onto handler 'buCliSubMenuController'
+09/26 12:23:14.642 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/option/] onto handler 'buCliSubMenuController'
+09/26 12:23:14.643 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/get] onto handler 'buMgrDataCenterController'
+09/26 12:23:14.644 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/get.*] onto handler 'buMgrDataCenterController'
+09/26 12:23:14.644 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/get/] onto handler 'buMgrDataCenterController'
+09/26 12:23:14.644 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/edit] onto handler 'buMgrDataCenterController'
+09/26 12:23:14.644 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/edit.*] onto handler 'buMgrDataCenterController'
+09/26 12:23:14.644 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/edit/] onto handler 'buMgrDataCenterController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/list] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/list.*] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/list/] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/create/{server_id}] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/create/{server_id}.*] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/create/{server_id}/] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/cancel/{menu_id}] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.645 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/cancel/{menu_id}.*] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.646 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/cancel/{menu_id}/] onto handler 'buMgrPubMenuController'
+09/26 12:23:14.647 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/list] onto handler 'buMgrServerController'
+09/26 12:23:14.647 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/list.*] onto handler 'buMgrServerController'
+09/26 12:23:14.647 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/list/] onto handler 'buMgrServerController'
+09/26 12:23:14.647 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/create] onto handler 'buMgrServerController'
+09/26 12:23:14.647 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/create.*] onto handler 'buMgrServerController'
+09/26 12:23:14.648 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/create/] onto handler 'buMgrServerController'
+09/26 12:23:14.648 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/isalive] onto handler 'buMgrServerController'
+09/26 12:23:14.648 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/isalive.*] onto handler 'buMgrServerController'
+09/26 12:23:14.648 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/isalive/] onto handler 'buMgrServerController'
+09/26 12:23:14.648 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/delete/{serverId}] onto handler 'buMgrServerController'
+09/26 12:23:14.648 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/delete/{serverId}.*] onto handler 'buMgrServerController'
+09/26 12:23:14.648 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/delete/{serverId}/] onto handler 'buMgrServerController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/list] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/list.*] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/list/] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/create/{server_id}] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/create/{server_id}.*] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/create/{server_id}/] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/cancel/{menu_id}] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/cancel/{menu_id}.*] onto handler 'buMgrSubMenuController'
+09/26 12:23:14.649 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/cancel/{menu_id}/] onto handler 'buMgrSubMenuController'
+09/26 12:23:16.908 INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+09/26 12:23:16.949 INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+09/26 12:23:16.950 INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.2.0 created.
+09/26 12:23:16.952 INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+09/26 12:23:16.953 INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.2.0) 'startQuertz' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+09/26 12:23:16.953 INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'startQuertz' initialized from an externally provided properties instance.
+09/26 12:23:16.954 INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.2.0
+09/26 12:23:16.957 INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@3bb0578f
+09/26 12:23:16.990 INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09/26 12:23:16.990 INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+09/26 12:23:16.991 INFO  org.quartz.core.QuartzScheduler - Scheduler startQuertz_$_NON_CLUSTERED started.
+09/26 12:23:17.177 INFO  org.bu.file.init.SystemConfig - 数据库里没有初始化数据......
+09/26 12:23:17.178 INFO  org.bu.file.init.SystemConfig - 系统初次使用，初始化基本数据，jxs framework version 1.0 ...
+09/26 12:23:17.317 INFO  org.bu.file.init.DataImportCmd - 读取【/data/data.conf】文件成功！
+09/26 12:23:17.317 INFO  org.bu.file.init.DataImportCmd - 读取【data.local.conf】文件失败,原因：class path resource [data.local.conf] cannot be opened because it does not exist
+09/26 12:23:17.317 INFO  org.bu.file.init.DataImportCmd - 解析数据导入命令文件成功，需要导入的命令有：
+09/26 12:23:17.317 INFO  org.bu.file.init.DataImportCmd - buAreaCmd
+09/26 12:23:17.318 INFO  org.bu.file.init.DataImportCmd - buMenuCmd
+09/26 12:23:17.318 INFO  org.bu.file.init.DataImportCmd - 开始导入数据...，jxs framework version 1.0 ...
+09/26 12:23:17.318 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 打开EntityManager
+09/26 12:23:17.318 INFO  org.bu.file.init.BuAreaCmd - 来数据了。。。
+09/26 12:23:17.973 INFO  org.bu.file.init.DataImportCmd - 命令 buAreaCmd 执行成功
+09/26 12:23:17.974 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 关闭EntityManager
+09/26 12:23:17.974 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 打开EntityManager
+09/26 12:23:17.974 INFO  org.bu.file.init.BuMenuCmd - 来数据了。。。
+09/26 12:23:17.993 INFO  org.bu.file.init.DataImportCmd - 命令 buMenuCmd 执行成功
+09/26 12:23:17.994 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 关闭EntityManager
+09/26 12:23:17.994 INFO  org.bu.file.init.DataImportCmd - 完成数据导入...，jxs framework version 1.0 ...
+09/26 12:23:18.130 INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.15.3 (CamelContext: camel) is starting
+09/26 12:23:18.131 INFO  o.a.camel.spring.SpringCamelContext - Tracing is enabled on CamelContext: camel
+09/26 12:23:18.132 INFO  o.a.c.m.ManagedManagementStrategy - JMX is enabled
+09/26 12:23:18.582 INFO  o.a.c.i.c.DefaultTypeConverter - Loaded 183 type converters
+09/26 12:23:18.626 INFO  o.a.camel.spring.SpringCamelContext - AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+09/26 12:23:18.626 INFO  o.a.camel.spring.SpringCamelContext - StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+09/26 12:23:18.627 INFO  o.a.camel.spring.SpringCamelContext - Total 0 routes, of which 0 is started.
+09/26 12:23:18.628 INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.15.3 (CamelContext: camel) started in 0.513 seconds
+09/26 12:23:18.636 INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 14657 ms
+09/26 12:23:18.637 INFO  org.bu.file.boot.BootListener - 进入系统初始化监听器.....
+09/26 12:23:18.645 INFO  org.bu.file.init.SystemConfig - 数据库里没有初始化数据......
+09/26 12:23:18.645 INFO  org.bu.file.init.SystemConfig - 系统初次使用，初始化基本数据，jxs framework version 1.0 ...
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - 读取【/data/data.conf】文件成功！
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - 读取【data.local.conf】文件失败,原因：class path resource [data.local.conf] cannot be opened because it does not exist
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - 解析数据导入命令文件成功，需要导入的命令有：
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - buAreaCmd
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - buMenuCmd
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - buAreaCmd
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - buMenuCmd
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - 开始导入数据...，jxs framework version 1.0 ...
+09/26 12:23:18.646 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 打开EntityManager
+09/26 12:23:18.647 INFO  org.bu.file.init.BuAreaCmd - 来数据了。。。
+09/26 12:23:19.103 INFO  org.bu.file.init.DataImportCmd - 命令 buAreaCmd 执行成功
+09/26 12:23:19.104 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 关闭EntityManager
+09/26 12:23:19.104 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 打开EntityManager
+09/26 12:23:19.104 INFO  org.bu.file.init.BuMenuCmd - 来数据了。。。
+09/26 12:23:19.116 INFO  org.bu.file.init.DataImportCmd - 命令 buMenuCmd 执行成功
+09/26 12:23:19.116 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 关闭EntityManager
+09/26 12:23:19.116 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 打开EntityManager
+09/26 12:23:19.116 INFO  org.bu.file.init.BuAreaCmd - 来数据了。。。
+09/26 12:23:19.567 INFO  org.bu.file.init.DataImportCmd - 命令 buAreaCmd 执行成功
+09/26 12:23:19.568 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 关闭EntityManager
+09/26 12:23:19.568 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 打开EntityManager
+09/26 12:23:19.568 INFO  org.bu.file.init.BuMenuCmd - 来数据了。。。
+09/26 12:23:19.592 INFO  org.bu.file.init.DataImportCmd - 命令 buMenuCmd 执行成功
+09/26 12:23:19.593 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 关闭EntityManager
+09/26 12:23:19.593 INFO  org.bu.file.init.DataImportCmd - 完成数据导入...，jxs framework version 1.0 ...
+09/26 12:23:19.593 INFO  org.bu.file.boot.BootListener - 系统导入完成，进入系统.....
+09/26 12:23:19.594 INFO  org.bu.file.boot.BootListener - 启动系统，jxs framework version 1.0 ...
+09/26 12:23:19.724 INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc-dispatcher-servlet': initialization started
+09/26 12:23:19.728 INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'spring-mvc-dispatcher-servlet-servlet': startup date [Sat Sep 26 12:23:19 CST 2015]; parent: Root WebApplicationContext
+09/26 12:23:19.728 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [mvc/controller-servlet-external.xml]
+09/26 12:23:19.863 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [mvc/controller-servlet-common.xml]
+09/26 12:23:19.917 INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1f2cfc93: defining beans [mvcContentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#1,handlerMapping,freemarkerConfig,fmXmlEscape,org.springframework.web.servlet.view.ContentNegotiatingViewResolver#0,exceptionResolver,multipartResolver]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@4e7e323
+09/26 12:23:20.545 INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+09/26 12:23:20.720 INFO  o.s.u.f.SpringTemplateLoader - SpringTemplateLoader for FreeMarker: using resource loader [WebApplicationContext for namespace 'spring-mvc-dispatcher-servlet-servlet': startup date [Sat Sep 26 12:23:19 CST 2015]; parent: Root WebApplicationContext] and template loader path [/WEB-INF/ftl/]
+09/26 12:23:20.722 INFO  o.s.w.s.v.f.FreeMarkerConfigurer - ClassTemplateLoader for Spring macros added to FreeMarker configuration
+09/26 12:23:21.062 INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc-dispatcher-servlet': initialization completed in 1338 ms
+09/26 12:23:30.157 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:23:30 CST 2015
+09/26 12:23:56.234 WARN  o.s.web.servlet.PageNotFound - No mapping found for HTTP request with URI [/bu_file/] in DispatcherServlet with name 'spring-mvc-dispatcher-servlet'
+09/26 12:24:00.005 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:24:00 CST 2015
+09/26 12:24:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:24:30 CST 2015
+09/26 12:25:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:25:00 CST 2015
+09/26 12:25:23.343 INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization started
+09/26 12:25:23.449 INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sat Sep 26 12:25:23 CST 2015]; root of context hierarchy
+09/26 12:25:23.509 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-external.xml]
+09/26 12:25:23.625 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-beans.xml]
+09/26 12:25:23.674 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-spring-mvc.xml]
+09/26 12:25:24.082 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-jpa.xml]
+09/26 12:25:25.858 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-redis.xml]
+09/26 12:25:25.906 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-quartz.xml]
+09/26 12:25:25.930 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [config/applicationContext-camel.xml]
+09/26 12:25:27.420 INFO  o.s.c.s.PropertySourcesPlaceholderConfigurer - Loading properties file from class path resource [config/config.properties]
+09/26 12:25:27.429 INFO  o.s.b.f.c.PropertyPlaceholderConfigurer - Loading properties file from class path resource [config/config.properties]
+09/26 12:25:27.438 INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+09/26 12:25:27.549 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'dataSource' of type [class org.apache.tomcat.jdbc.pool.DataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:25:27.566 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'jpa.base'
+09/26 12:25:30.247 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:25:30.268 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'jedisPoolConfig' of type [class redis.clients.jedis.JedisPoolConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:25:30.280 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'connectionFactory' of type [class org.springframework.data.redis.connection.jedis.JedisConnectionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:25:30.327 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:25:30.332 INFO  o.s.w.c.s.XmlWebApplicationContext - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09/26 12:25:30.379 INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3af1fdcd: defining beans [taskExecutor,buFtpServer,ftpStrategy,simpleRouteBuilder,buCliCountDao,buCliDownloadDao,buCliPublishDao,buCliServerDao,buCliStoreDao,buCliSubscribeDao,buFileDao,buMenuDao,buMgrDataCenterDao,buMgrPublishDao,buMgrServerDao,buMgrSubscribeDao,buSysDao,buSysService,buAreaDao,buAreaCmd,buMenuCmd,dataImport,systemConfig,fileUploadHolder,springContextUtil,buFileCountController,buMonitorController,buShareFileController,buTestController,redirectPage,buCliFtpServerController,buCliMonitorController,buCliPubMenuController,buCliStoreController,buCliSubMenuController,buMgrDataCenterController,buMgrPubMenuController,buMgrServerController,buMgrSubMenuController,jsonHttp,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,defaultAnnotationHandlerMapping,annotationMethodHandlerAdapter,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,buMgrPublishRepository,buCliCountRepository,buMenuRepository,buCliStoreRepository,buMgrDataCenterRepository,buCliSubscribeRepository,buCliServerRepository,buCliDownloadRepository,buCliPublishRepository,buMgrServerRepository,buMgrSubscribeRepository,buSysRepository,buAreaRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,entityManagerFactory,transactionManager,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,dataSource,defaultCacheManager,ehCache,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,jedisPoolConfig,connectionFactory,redisTemplate,fileScanJob,myJobTrigger,myJobDetail,startQuertz,template,consumerTemplate,camel:beanPostProcessor,camel,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+09/26 12:25:30.400 INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService  'taskExecutor'
+09/26 12:25:32.043 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/statistics/file_count/{secret_key}/{menuId}] onto handler 'buFileCountController'
+09/26 12:25:32.043 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/statistics/file_count/{secret_key}/{menuId}.*] onto handler 'buFileCountController'
+09/26 12:25:32.043 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/statistics/file_count/{secret_key}/{menuId}/] onto handler 'buFileCountController'
+09/26 12:25:32.045 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/hardware/{secret_key}] onto handler 'buMonitorController'
+09/26 12:25:32.045 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/hardware/{secret_key}.*] onto handler 'buMonitorController'
+09/26 12:25:32.045 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/hardware/{secret_key}/] onto handler 'buMonitorController'
+09/26 12:25:32.045 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/menus/{secret_key}] onto handler 'buMonitorController'
+09/26 12:25:32.045 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/menus/{secret_key}.*] onto handler 'buMonitorController'
+09/26 12:25:32.045 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/monitor/menus/{secret_key}/] onto handler 'buMonitorController'
+09/26 12:25:32.047 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/get/{secret_key}/{type}] onto handler 'buShareFileController'
+09/26 12:25:32.047 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/get/{secret_key}/{type}.*] onto handler 'buShareFileController'
+09/26 12:25:32.047 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/get/{secret_key}/{type}/] onto handler 'buShareFileController'
+09/26 12:25:32.048 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/put/{secret_key}/{type}] onto handler 'buShareFileController'
+09/26 12:25:32.048 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/put/{secret_key}/{type}.*] onto handler 'buShareFileController'
+09/26 12:25:32.048 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/put/{secret_key}/{type}/] onto handler 'buShareFileController'
+09/26 12:25:32.048 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/download/{secret_key}] onto handler 'buShareFileController'
+09/26 12:25:32.048 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/download/{secret_key}.*] onto handler 'buShareFileController'
+09/26 12:25:32.048 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/share/download/{secret_key}/] onto handler 'buShareFileController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/start] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/start.*] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/start/] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/stop] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/stop.*] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/ftp/stop/] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/callback] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/callback.*] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/callback/] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/scan] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/scan.*] onto handler 'buTestController'
+09/26 12:25:32.049 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/bu_test/scan/] onto handler 'buTestController'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/index] onto handler 'redirectPage'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/index.*] onto handler 'redirectPage'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/index/] onto handler 'redirectPage'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error404] onto handler 'redirectPage'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error404.*] onto handler 'redirectPage'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error404/] onto handler 'redirectPage'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error500] onto handler 'redirectPage'
+09/26 12:25:32.050 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error500.*] onto handler 'redirectPage'
+09/26 12:25:32.051 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/error500/] onto handler 'redirectPage'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/init] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/init.*] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/init/] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/start] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/start.*] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/start/] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/stop] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/stop.*] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/stop/] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/isalive] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/isalive.*] onto handler 'buCliFtpServerController'
+09/26 12:25:32.052 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/ftpserver/isalive/] onto handler 'buCliFtpServerController'
+09/26 12:25:32.053 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/connect] onto handler 'buCliMonitorController'
+09/26 12:25:32.053 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/connect.*] onto handler 'buCliMonitorController'
+09/26 12:25:32.053 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/connect/] onto handler 'buCliMonitorController'
+09/26 12:25:32.053 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/hardware] onto handler 'buCliMonitorController'
+09/26 12:25:32.053 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/hardware.*] onto handler 'buCliMonitorController'
+09/26 12:25:32.053 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/monitor/hardware/] onto handler 'buCliMonitorController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/list] onto handler 'buCliPubMenuController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/list.*] onto handler 'buCliPubMenuController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/list/] onto handler 'buCliPubMenuController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/publish] onto handler 'buCliPubMenuController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/publish.*] onto handler 'buCliPubMenuController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/publish/] onto handler 'buCliPubMenuController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/option] onto handler 'buCliPubMenuController'
+09/26 12:25:32.054 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/option.*] onto handler 'buCliPubMenuController'
+09/26 12:25:32.055 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/pub_menu/option/] onto handler 'buCliPubMenuController'
+09/26 12:25:32.058 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/store/list/{lastTime}] onto handler 'buCliStoreController'
+09/26 12:25:32.058 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/store/list/{lastTime}.*] onto handler 'buCliStoreController'
+09/26 12:25:32.058 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/store/list/{lastTime}/] onto handler 'buCliStoreController'
+09/26 12:25:32.061 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/list] onto handler 'buCliSubMenuController'
+09/26 12:25:32.061 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/list.*] onto handler 'buCliSubMenuController'
+09/26 12:25:32.061 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/list/] onto handler 'buCliSubMenuController'
+09/26 12:25:32.061 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/subscribe] onto handler 'buCliSubMenuController'
+09/26 12:25:32.061 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/subscribe.*] onto handler 'buCliSubMenuController'
+09/26 12:25:32.062 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/subscribe/] onto handler 'buCliSubMenuController'
+09/26 12:25:32.062 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/option] onto handler 'buCliSubMenuController'
+09/26 12:25:32.062 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/option.*] onto handler 'buCliSubMenuController'
+09/26 12:25:32.062 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/client/config/sub_menu/option/] onto handler 'buCliSubMenuController'
+09/26 12:25:32.062 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/get] onto handler 'buMgrDataCenterController'
+09/26 12:25:32.062 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/get.*] onto handler 'buMgrDataCenterController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/get/] onto handler 'buMgrDataCenterController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/edit] onto handler 'buMgrDataCenterController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/edit.*] onto handler 'buMgrDataCenterController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/data_center/edit/] onto handler 'buMgrDataCenterController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/list] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/list.*] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/list/] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/create/{server_id}] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/create/{server_id}.*] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.063 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/create/{server_id}/] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/cancel/{menu_id}] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/cancel/{menu_id}.*] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/pub_menu/cancel/{menu_id}/] onto handler 'buMgrPubMenuController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/list] onto handler 'buMgrServerController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/list.*] onto handler 'buMgrServerController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/list/] onto handler 'buMgrServerController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/create] onto handler 'buMgrServerController'
+09/26 12:25:32.064 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/create.*] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/create/] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/isalive] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/isalive.*] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/isalive/] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/delete/{serverId}] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/delete/{serverId}.*] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/server/delete/{serverId}/] onto handler 'buMgrServerController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/list] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/list.*] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/list/] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/create/{server_id}] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/create/{server_id}.*] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/create/{server_id}/] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.065 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/cancel/{menu_id}] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.066 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/cancel/{menu_id}.*] onto handler 'buMgrSubMenuController'
+09/26 12:25:32.066 INFO  o.s.w.s.m.a.DefaultAnnotationHandlerMapping - Mapped URL path [/mgr/config/sub_menu/cancel/{menu_id}/] onto handler 'buMgrSubMenuController'
+09/26 12:25:33.268 INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+09/26 12:25:33.302 INFO  o.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+09/26 12:25:33.302 INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.2.0 created.
+09/26 12:25:33.304 INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+09/26 12:25:33.306 INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.2.0) 'startQuertz' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+09/26 12:25:33.306 INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'startQuertz' initialized from an externally provided properties instance.
+09/26 12:25:33.306 INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.2.0
+09/26 12:25:33.308 INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@7dceff5b
+09/26 12:25:33.318 INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09/26 12:25:33.319 INFO  o.s.s.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+09/26 12:25:33.319 INFO  org.quartz.core.QuartzScheduler - Scheduler startQuertz_$_NON_CLUSTERED started.
+09/26 12:25:33.410 INFO  org.bu.file.init.SystemConfig - 数据库里没有初始化数据......
+09/26 12:25:33.411 INFO  org.bu.file.init.SystemConfig - 系统初次使用，初始化基本数据，jxs framework version 1.0 ...
+09/26 12:25:33.486 INFO  org.bu.file.init.DataImportCmd - 读取【/data/data.conf】文件成功！
+09/26 12:25:33.487 INFO  org.bu.file.init.DataImportCmd - 读取【data.local.conf】文件失败,原因：class path resource [data.local.conf] cannot be opened because it does not exist
+09/26 12:25:33.487 INFO  org.bu.file.init.DataImportCmd - 解析数据导入命令文件成功，需要导入的命令有：
+09/26 12:25:33.487 INFO  org.bu.file.init.DataImportCmd - buAreaCmd
+09/26 12:25:33.487 INFO  org.bu.file.init.DataImportCmd - buMenuCmd
+09/26 12:25:33.487 INFO  org.bu.file.init.DataImportCmd - 开始导入数据...，jxs framework version 1.0 ...
+09/26 12:25:33.487 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 打开EntityManager
+09/26 12:25:33.487 INFO  org.bu.file.init.BuAreaCmd - 来数据了。。。
+09/26 12:25:34.192 INFO  org.bu.file.init.DataImportCmd - 命令 buAreaCmd 执行成功
+09/26 12:25:34.193 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 关闭EntityManager
+09/26 12:25:34.194 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 打开EntityManager
+09/26 12:25:34.194 INFO  org.bu.file.init.BuMenuCmd - 来数据了。。。
+09/26 12:25:34.222 INFO  org.bu.file.init.DataImportCmd - 命令 buMenuCmd 执行成功
+09/26 12:25:34.223 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 关闭EntityManager
+09/26 12:25:34.223 INFO  org.bu.file.init.DataImportCmd - 完成数据导入...，jxs framework version 1.0 ...
+09/26 12:25:34.276 INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.15.3 (CamelContext: camel) is starting
+09/26 12:25:34.276 INFO  o.a.camel.spring.SpringCamelContext - Tracing is enabled on CamelContext: camel
+09/26 12:25:34.277 INFO  o.a.c.m.ManagedManagementStrategy - JMX is enabled
+09/26 12:25:34.621 INFO  o.a.c.i.c.DefaultTypeConverter - Loaded 183 type converters
+09/26 12:25:34.771 INFO  o.a.camel.spring.SpringCamelContext - AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+09/26 12:25:34.771 INFO  o.a.camel.spring.SpringCamelContext - StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+09/26 12:25:34.772 INFO  o.a.camel.spring.SpringCamelContext - Total 0 routes, of which 0 is started.
+09/26 12:25:34.773 INFO  o.a.camel.spring.SpringCamelContext - Apache Camel 2.15.3 (CamelContext: camel) started in 0.499 seconds
+09/26 12:25:34.775 INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 11427 ms
+09/26 12:25:34.775 INFO  org.bu.file.boot.BootListener - 进入系统初始化监听器.....
+09/26 12:25:34.786 INFO  org.bu.file.init.SystemConfig - 数据库里没有初始化数据......
+09/26 12:25:34.786 INFO  org.bu.file.init.SystemConfig - 系统初次使用，初始化基本数据，jxs framework version 1.0 ...
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - 读取【/data/data.conf】文件成功！
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - 读取【data.local.conf】文件失败,原因：class path resource [data.local.conf] cannot be opened because it does not exist
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - 解析数据导入命令文件成功，需要导入的命令有：
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - buAreaCmd
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - buMenuCmd
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - buAreaCmd
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - buMenuCmd
+09/26 12:25:34.788 INFO  org.bu.file.init.DataImportCmd - 开始导入数据...，jxs framework version 1.0 ...
+09/26 12:25:34.789 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 打开EntityManager
+09/26 12:25:34.789 INFO  org.bu.file.init.BuAreaCmd - 来数据了。。。
+09/26 12:25:35.471 INFO  org.bu.file.init.DataImportCmd - 命令 buAreaCmd 执行成功
+09/26 12:25:35.472 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 关闭EntityManager
+09/26 12:25:35.473 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 打开EntityManager
+09/26 12:25:35.473 INFO  org.bu.file.init.BuMenuCmd - 来数据了。。。
+09/26 12:25:35.491 INFO  org.bu.file.init.DataImportCmd - 命令 buMenuCmd 执行成功
+09/26 12:25:35.492 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 关闭EntityManager
+09/26 12:25:35.492 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 打开EntityManager
+09/26 12:25:35.492 INFO  org.bu.file.init.BuAreaCmd - 来数据了。。。
+09/26 12:25:36.012 INFO  org.bu.file.init.DataImportCmd - 命令 buAreaCmd 执行成功
+09/26 12:25:36.013 INFO  org.bu.file.init.DataImportCmd - 为命令 buAreaCmd 关闭EntityManager
+09/26 12:25:36.013 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 打开EntityManager
+09/26 12:25:36.013 INFO  org.bu.file.init.BuMenuCmd - 来数据了。。。
+09/26 12:25:36.030 INFO  org.bu.file.init.DataImportCmd - 命令 buMenuCmd 执行成功
+09/26 12:25:36.031 INFO  org.bu.file.init.DataImportCmd - 为命令 buMenuCmd 关闭EntityManager
+09/26 12:25:36.031 INFO  org.bu.file.init.DataImportCmd - 完成数据导入...，jxs framework version 1.0 ...
+09/26 12:25:36.031 INFO  org.bu.file.boot.BootListener - 系统导入完成，进入系统.....
+09/26 12:25:36.031 INFO  org.bu.file.boot.BootListener - 启动系统，jxs framework version 1.0 ...
+09/26 12:25:36.087 INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc-dispatcher-servlet': initialization started
+09/26 12:25:36.090 INFO  o.s.w.c.s.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'spring-mvc-dispatcher-servlet-servlet': startup date [Sat Sep 26 12:25:36 CST 2015]; parent: Root WebApplicationContext
+09/26 12:25:36.091 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [mvc/controller-servlet-external.xml]
+09/26 12:25:36.206 INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [mvc/controller-servlet-common.xml]
+09/26 12:25:36.240 INFO  o.s.b.f.s.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@5586c00: defining beans [mvcContentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#1,handlerMapping,freemarkerConfig,fmXmlEscape,org.springframework.web.servlet.view.ContentNegotiatingViewResolver#0,exceptionResolver,multipartResolver]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@3af1fdcd
+09/26 12:25:36.572 INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+09/26 12:25:36.677 INFO  o.s.u.f.SpringTemplateLoader - SpringTemplateLoader for FreeMarker: using resource loader [WebApplicationContext for namespace 'spring-mvc-dispatcher-servlet-servlet': startup date [Sat Sep 26 12:25:36 CST 2015]; parent: Root WebApplicationContext] and template loader path [/WEB-INF/ftl/]
+09/26 12:25:36.678 INFO  o.s.w.s.v.f.FreeMarkerConfigurer - ClassTemplateLoader for Spring macros added to FreeMarker configuration
+09/26 12:25:36.956 INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'spring-mvc-dispatcher-servlet': initialization completed in 869 ms
+09/26 12:25:48.260 INFO  o.a.ftpserver.impl.DefaultFtpServer - FTP server started
+09/26 12:25:48.262 INFO  bu.file.ftp.server.FtpServerLauncher - Starting FTP sever... (10.18.24.241:12345)
+09/26 12:26:00.012 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:26:00 CST 2015
+09/26 12:26:04.244 INFO  o.a.f.listener.nio.FtpLoggingFilter - CREATED
+09/26 12:26:04.284 INFO  o.a.f.listener.nio.FtpLoggingFilter - OPENED
+09/26 12:26:04.297 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 220 Service ready for new user.
+
+09/26 12:26:04.300 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: USER jxs
+09/26 12:26:04.304 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 331 User name okay, need password for jxs.
+
+09/26 12:26:04.304 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: PASS *****
+09/26 12:26:04.314 INFO  o.apache.ftpserver.command.impl.PASS - Login success - jxs
+09/26 12:26:04.315 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 230 User logged in, proceed.
+
+09/26 12:26:04.316 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: SYST
+09/26 12:26:04.317 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 215 UNIX Type: Apache FtpServer
+
+09/26 12:26:04.317 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: PWD
+09/26 12:26:04.318 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 257 "/" is current directory.
+
+09/26 12:26:04.318 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: TYPE I
+09/26 12:26:04.320 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 200 Command TYPE okay.
+
+09/26 12:26:04.320 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: SIZE /
+09/26 12:26:04.321 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 550 /: Not a plain file.
+
+09/26 12:26:04.321 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: CWD /
+09/26 12:26:04.322 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 250 Directory changed to /
+
+09/26 12:26:04.322 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: PASV
+09/26 12:26:04.327 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 227 Entering Passive Mode (10,18,24,241,233,251)
+
+09/26 12:26:04.327 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: LIST -l
+09/26 12:26:04.348 WARN  o.apache.ftpserver.impl.PassivePorts - Releasing unreserved passive port: 59899
+09/26 12:26:04.349 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 150 File status okay; about to open data connection.
+
+09/26 12:26:04.349 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 226 Closing data connection.
+
+09/26 12:26:04.349 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: QUIT
+09/26 12:26:04.350 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 221 Goodbye.
+
+09/26 12:26:04.351 INFO  o.a.f.listener.nio.FtpLoggingFilter - CLOSED
+09/26 12:26:07.083 INFO  o.a.f.listener.nio.FtpLoggingFilter - CREATED
+09/26 12:26:07.084 INFO  o.a.f.listener.nio.FtpLoggingFilter - OPENED
+09/26 12:26:07.086 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 220 Service ready for new user.
+
+09/26 12:26:07.087 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: USER jxs
+09/26 12:26:07.088 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 331 User name okay, need password for jxs.
+
+09/26 12:26:07.088 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: PASS *****
+09/26 12:26:07.089 INFO  o.apache.ftpserver.command.impl.PASS - Login success - jxs
+09/26 12:26:07.089 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 230 User logged in, proceed.
+
+09/26 12:26:07.089 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: SYST
+09/26 12:26:07.090 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 215 UNIX Type: Apache FtpServer
+
+09/26 12:26:07.090 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: PWD
+09/26 12:26:07.091 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 257 "/" is current directory.
+
+09/26 12:26:07.091 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: TYPE I
+09/26 12:26:07.092 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 200 Command TYPE okay.
+
+09/26 12:26:07.092 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: SIZE /Music
+09/26 12:26:07.093 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 550 /Music: Not a plain file.
+
+09/26 12:26:07.093 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: CWD /Music/
+09/26 12:26:07.094 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 250 Directory changed to /Music
+
+09/26 12:26:07.095 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: PASV
+09/26 12:26:07.096 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 227 Entering Passive Mode (10,18,24,241,234,3)
+
+09/26 12:26:07.096 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: LIST -l
+09/26 12:26:07.100 WARN  o.apache.ftpserver.impl.PassivePorts - Releasing unreserved passive port: 59907
+09/26 12:26:07.100 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 150 File status okay; about to open data connection.
+
+09/26 12:26:07.101 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 226 Closing data connection.
+
+09/26 12:26:07.101 INFO  o.a.f.listener.nio.FtpLoggingFilter - RECEIVED: QUIT
+09/26 12:26:07.104 INFO  o.a.f.listener.nio.FtpLoggingFilter - SENT: 221 Goodbye.
+
+09/26 12:26:07.105 INFO  o.a.f.listener.nio.FtpLoggingFilter - CLOSED
+09/26 12:26:30.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:26:30 CST 2015
+09/26 12:27:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:27:00 CST 2015
+09/26 12:27:30.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:27:30 CST 2015
+09/26 12:28:00.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:28:00 CST 2015
+09/26 12:28:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:28:30 CST 2015
+09/26 12:29:00.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:29:00 CST 2015
+09/26 12:29:30.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:29:30 CST 2015
+09/26 12:30:00.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:30:00 CST 2015
+09/26 12:30:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:30:30 CST 2015
+09/26 12:31:00.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:31:00 CST 2015
+09/26 12:31:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:31:30 CST 2015
+09/26 12:32:00.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:32:00 CST 2015
+09/26 12:32:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:32:30 CST 2015
+09/26 12:33:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:33:00 CST 2015
+09/26 12:33:30.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:33:30 CST 2015
+09/26 12:34:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:34:00 CST 2015
+09/26 12:34:30.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:34:30 CST 2015
+09/26 12:35:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:35:00 CST 2015
+09/26 12:35:30.005 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:35:30 CST 2015
+09/26 12:36:00.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:36:00 CST 2015
+09/26 12:36:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:36:30 CST 2015
+09/26 12:37:00.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:37:00 CST 2015
+09/26 12:37:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:37:30 CST 2015
+09/26 12:38:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:38:00 CST 2015
+09/26 12:38:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:38:30 CST 2015
+09/26 12:39:00.005 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:39:00 CST 2015
+09/26 12:39:30.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:39:30 CST 2015
+09/26 12:40:00.005 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:40:00 CST 2015
+09/26 12:40:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:40:30 CST 2015
+09/26 12:41:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:41:00 CST 2015
+09/26 12:41:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:41:30 CST 2015
+09/26 12:42:00.011 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:42:00 CST 2015
+09/26 12:42:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:42:30 CST 2015
+09/26 12:43:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:43:00 CST 2015
+09/26 12:43:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:43:30 CST 2015
+09/26 12:44:00.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:44:00 CST 2015
+09/26 12:44:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:44:30 CST 2015
+09/26 12:45:00.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:45:00 CST 2015
+09/26 12:45:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:45:30 CST 2015
+09/26 12:46:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:46:00 CST 2015
+09/26 12:46:30.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:46:30 CST 2015
+09/26 12:47:00.005 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:47:00 CST 2015
+09/26 12:47:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:47:30 CST 2015
+09/26 12:48:00.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:48:00 CST 2015
+09/26 12:48:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:48:30 CST 2015
+09/26 12:49:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:49:00 CST 2015
+09/26 12:49:30.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:49:30 CST 2015
+09/26 12:50:00.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:50:00 CST 2015
+09/26 12:50:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:50:30 CST 2015
+09/26 12:51:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:51:00 CST 2015
+09/26 12:51:30.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:51:30 CST 2015
+09/26 12:52:00.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:52:00 CST 2015
+09/26 12:52:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:52:30 CST 2015
+09/26 12:53:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:53:00 CST 2015
+09/26 12:53:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:53:30 CST 2015
+09/26 12:54:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:54:00 CST 2015
+09/26 12:54:30.005 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:54:30 CST 2015
+09/26 12:55:00.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:55:00 CST 2015
+09/26 12:55:30.004 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:55:30 CST 2015
+09/26 12:56:00.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:56:00 CST 2015
+09/26 12:56:30.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:56:30 CST 2015
+09/26 12:57:00.003 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:57:00 CST 2015
+09/26 12:57:30.002 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:57:30 CST 2015
+09/26 12:58:00.001 INFO  org.bu.file.quartz.FileScanJob - 当前时间:Sat Sep 26 12:58:00 CST 2015
+09/26 12:58:06.893 INFO  bu.file.ftp.server.FtpServerLauncher - Stopping server by shutdown hook

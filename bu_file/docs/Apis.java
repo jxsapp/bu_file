@@ -27,6 +27,7 @@
  		-api:  http://localhost:8080/bu_file/mgr/config/server/list
  		-demo: curl -i -X GET -H "Content-Type: application/json" -H "Accept: application/json"  http://localhost:8080/bu_file/mgr/config/server/list
  	    -result:{"buRst":{"error":{"code":0,"msg":"success","key":""},"rst":[{"sys_id":"58f303a0-0026-485b-8b14-670ac0d9da87","createdTime":1442227021000,"updatedTime":1442227021000,"serverName":"统一申报前置库","serverIp":"10.18.24.241","serverDesc":"我仅仅是个描述信息"}],"count":1}}
+	
  	
  2.发布资源管理
  	2.0 发布一个资源

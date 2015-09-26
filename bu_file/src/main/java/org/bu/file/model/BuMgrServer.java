@@ -60,6 +60,10 @@ public class BuMgrServer extends BuModel implements MgrServerData {
 		return rst;
 	}
 
+	public int buildDataCenter(BuMgrServer center) {
+		return serverIp.equals(center.getServerIp()) ? DATA_CENTER_YES : DATA_CENTER_FALSE;
+	}
+
 	public BuCliServer buildCliServer() {
 		BuCliServer buCliServer = new BuCliServer();
 		buCliServer.setPassword(password);

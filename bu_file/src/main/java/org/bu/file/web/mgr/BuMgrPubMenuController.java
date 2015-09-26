@@ -59,15 +59,14 @@ public class BuMgrPubMenuController extends ControllerSupport {
 	public BuRst createMenu(HttpServletRequest request, HttpServletResponse response,//
 			@PathVariable("server_id") String server_id,// 机器ID
 			@RequestBody BuCliPublish cliPublish) {
-		return //
-		new BuMgrPubMenuMaster.BuMgrPubMenuLogic(this, buMgrServerDao, buMgrPublishDao, jsonHttp).publish(request, response, server_id, cliPublish);
+		return new BuMgrPubMenuLogic(this, buMgrServerDao, buMgrPublishDao, jsonHttp).publish(request, response, server_id, cliPublish);
 	}
 
 	@RequestMapping(value = "/cancel/{menu_id}", method = RequestMethod.POST)
 	public BuRst cancelMenu(HttpServletRequest request, HttpServletResponse response,//
 			@PathVariable("menu_id") String menu_id// 目录ID
 	) {
-		return new BuMgrPubMenuMaster.BuMgrPubMenuLogic(this, buMgrServerDao, buMgrPublishDao, jsonHttp).option(request, response, menu_id, BuStatus.CANCELED);
+		return new BuMgrPubMenuLogic(this, buMgrServerDao, buMgrPublishDao, jsonHttp).option(request, response, menu_id, BuStatus.CANCELED);
 	}
 
 }

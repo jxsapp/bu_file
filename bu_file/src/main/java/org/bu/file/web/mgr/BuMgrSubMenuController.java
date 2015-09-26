@@ -59,7 +59,7 @@ public class BuMgrSubMenuController extends ControllerSupport {
 			@PathVariable("publish_id") String publish_id// 发布资源ID
 	) {
 		return //
-		new BuMgrSubMenuMaster.BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).subscribe(request, response, server_id, publish_id);
+		new BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).subscribe(request, response, server_id, publish_id);
 	}
 
 	@RequestMapping(value = "/cancel/{menu_id}", method = RequestMethod.POST)
@@ -67,7 +67,7 @@ public class BuMgrSubMenuController extends ControllerSupport {
 			@PathVariable("menu_id") String menu_id// 目录ID
 	) {
 		return //
-		new BuMgrSubMenuMaster.BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).option(request, response, menu_id, BuStatus.CANCELED);
+		new BuMgrSubMenuLogic(this, buMgrServerDao, buMgrSubscribeDao, jsonHttp).option(request, response, menu_id, BuStatus.CANCELED);
 	}
 
 }

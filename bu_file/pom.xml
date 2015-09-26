@@ -101,8 +101,6 @@
 			<groupId>org.bu.ftpserver</groupId>
 			<artifactId>bu-ftpserver</artifactId>
 			<version>0.2</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/bu-ftpserver.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.ftpserver</groupId>
